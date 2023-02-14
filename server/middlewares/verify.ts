@@ -8,11 +8,10 @@ export function verify(req: Request, res: Response, next: NextFunction){
   if (token !== undefined) {
     const secret: string = process.env.SECRET_KEY!
     const decoded = jwt.verify(token, secret)
-    console.log({token: token, decoded: decoded})
      if(decoded){
-        (req as UserRequest).token = decoded
+        (req as UserRequest).user = decoded
      }
-      next();;
+      next()
   } else {
     res.status(403).send("you are not logged in")
   }

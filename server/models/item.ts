@@ -1,4 +1,5 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { model, models, Schema } from "mongoose";
+import { User } from "./user";
 
 const ItemSchema = new Schema({
     name:{
@@ -10,10 +11,13 @@ const ItemSchema = new Schema({
     quantity:{
         type: String
     },
-    image: {
-        source:Buffer,
-        filename: String,
-        minetype: String
+    image:
+    {
+        data: Buffer,
+        contentType: String
+    },
+    description:{
+        type: String
     },
     category: {
         type: String
@@ -23,7 +27,8 @@ const ItemSchema = new Schema({
         default: Date.now()
     },
     createdBy:{
-        type: mongoose.Types.ObjectId
+        type: mongoose.Types.ObjectId,
+        ref: User
     },
     updateAt:{
         type: Date,
@@ -32,3 +37,5 @@ const ItemSchema = new Schema({
         type: mongoose.Types.ObjectId
     }
 })
+
+export const Item = model('Item', ItemSchema)

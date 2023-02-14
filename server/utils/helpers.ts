@@ -1,5 +1,7 @@
 import bcrypt from 'bcrypt'
+import { ObjectId } from 'mongoose'
 import { User } from '../models/user'
+import { UserRequest } from '../types/request'
 import { IUser } from '../types/user'
 
 export function hashPassword(password: string) {
@@ -42,5 +44,18 @@ export function unhashPassword(email: string, password: string) {
                 else reject(err)
             }))
         })
+    })
+}
+
+export function isAdmin(req: UserRequest):Promise<boolean>{
+    const userId = (req.user as IUser)?.id
+    return User.findOne({id: userId})
+    .then((user)=>{
+        if((user as IUser).isAdmin){
+            return true
+        }
+        return false
+    }).catch((err)=>{
+        return err
     })
 }
