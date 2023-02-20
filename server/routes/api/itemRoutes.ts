@@ -1,5 +1,5 @@
 import { verify } from "../../middlewares/verify"
-import { findItem, findItems, postItem } from "../../controllers/itemController"
+import { findItem, findItems, getItemByCategory, postItem } from "../../controllers/itemController"
 
 export const itemRoute = require('express').Router()
 const multer  = require('multer')
@@ -16,3 +16,4 @@ const upload = multer({storage})
 itemRoute.post('/api/v1/item/create', upload.single('image'), verify, postItem)
 itemRoute.get('/api/v1/items', verify, findItems)
 itemRoute.get('/api/v1/item/:id', verify, findItem)
+itemRoute.get('/api/v1/items/:category', verify, getItemByCategory)

@@ -3,7 +3,6 @@ import { User } from '../models/user'
 import { IUser } from '../types/user'
 import { checkEmailDuplicate, findUserByEmail, hashPassword, unhashPassword } from '../utils/helpers'
 import jwt from 'jsonwebtoken'
-import { UserRequest } from '../types/request'
 
 export const postUser = (req: Request, res: Response) => {
     let { username, email, password } = req.body

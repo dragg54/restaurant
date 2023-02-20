@@ -7,6 +7,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import { itemRoute } from './routes/api/itemRoutes'
 import path from 'path'
+import { cartRoute } from './routes/api/cartRoutes'
 
 config({path: __dirname + '/.env'})
 const app = express()
@@ -18,6 +19,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use('/', userRoute)
 app.use('/', itemRoute)
+app.use('/', cartRoute)
 app.use('/static', (express.static(path.join(__dirname, 'public/images'))))
 app.listen("8080", ()=>{
     console.log('listening to port 8080')
