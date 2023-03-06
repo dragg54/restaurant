@@ -13,6 +13,9 @@ const OrderSchema = new Schema({
         enum: OrderStatus,
         default: null
     },
+    address: {
+        type: String
+    },
     orderedBy: {
         type: mongoose.Types.ObjectId,
         ref: User
