@@ -5,4 +5,4 @@ import { verify } from '../../middlewares/verify'
 export const orderRoute = Router()
 
 orderRoute.post("/api/v1/order/new", verify, postOrder)
-orderRoute.post('/charge',  stripePayment)
+orderRoute.post('/charge', verify, stripePayment)

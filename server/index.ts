@@ -26,11 +26,7 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/public/success.html'));
   }); */
   
-  
-app.get('/', function(req, res){
-  res.send(
-     'pk_test_51MZnT6HXwt4BpIBQAyCb0LxDAclJ2qxMU1KlO8Lle2NawVWVDK5LPcma7hUIGGBRMMMYzJDo3v1WHCzi7hOEVh9E00xUfeIGEM')
-}) 
+ 
 app.use('/', userRoute)
 app.use('/', itemRoute)
 app.use('/', cartRoute)
