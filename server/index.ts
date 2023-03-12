@@ -9,9 +9,10 @@ import { itemRoute } from './routes/api/itemRoutes'
 import path from 'path'
 import { cartRoute } from './routes/api/cartRoutes'
 import { orderRoute } from './routes/api/orderRoutes'
+import { socketServer } from './socket-io/server'
 
 config({path: __dirname + '/.env'})
-const app = express()
+export const app = express()
 dbConnect() 
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -35,6 +36,7 @@ app.use(express.static('public'));
 app.use('/static', (express.static(path.join(__dirname, 'public/images'))))
 const portNumber = process.env.PORT_NUMBER
 app.listen(portNumber, ()=>{
-    console.log('listening to port 8080')
+  console.log('listening to port 8080')
 })
+socketServer()
 

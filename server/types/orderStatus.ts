@@ -1,7 +1,8 @@
 export enum OrderStatus{
     ORDERED,
     PENDING,
-    ACCEPED,
-    REJECTED,
-    DELIVERED
+    ACCEPTED,
+    CANCELLED,
+    DELIVERED,
+    UNORDERED
 }

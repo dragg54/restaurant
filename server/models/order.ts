@@ -10,8 +10,8 @@ const OrderSchema = new Schema({
     },
     status:{
         type: String,
-        enum: OrderStatus,
-        default: null
+        enum: OrderStatus!,
+        default: OrderStatus.UNORDERED
     },
     address: {
         type: String
