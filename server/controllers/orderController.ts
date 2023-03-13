@@ -6,6 +6,7 @@ import { IUser } from "../types/user";
 import { Cart } from "../models/cart";
 import { User } from "../models/user";
 import { isAdmin } from "../utils/helpers";
+import {sendMail} from '../utils/mailer'
 
 const stripe = require('stripe')('sk_test_51MZnT6HXwt4BpIBQC26Z5Z4ujiT51tzc1QZF95eTENcL6MwfwvmCS6X5V1ERNVGzXaYwK409aG0QyCt6FVGOaqt9002ssFDb8A');
 
@@ -36,7 +37,7 @@ export const updateOrderStatus = async (req: Request, res: Response) => {
     const orderId = req.params.id
     if (orderId && await isAdmin(req as UserRequest) ) {
         try {
-            switch (req.body.status) {
+            switch (req.body.status.toUpperCase()) {
                 case OrderStatus[0]:
                     await Order.findByIdAndUpdate({ _id: orderId }, { status: OrderStatus.ORDERED })
                     return res.status(200).send('order updated to ordered')
@@ -83,6 +84,7 @@ export const stripePayment = async (req: ItemRequest, res: Response) => {
                     customer: customer.id
 
                 }).then(async () => {
+                    sendMail(user?.email!)
                     await Cart.findByIdAndDelete({ owner: userId });
                     res.status(201).send(userOrder)
                 })

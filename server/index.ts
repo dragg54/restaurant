@@ -10,6 +10,7 @@ import path from 'path'
 import { cartRoute } from './routes/api/cartRoutes'
 import { orderRoute } from './routes/api/orderRoutes'
 import { socketServer } from './socket-io/server'
+import { sendMail } from './utils/mailer'
 
 config({path: __dirname + '/.env'})
 export const app = express()
@@ -27,7 +28,6 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/public/success.html'));
   }); */
   
- 
 app.use('/', userRoute)
 app.use('/', itemRoute)
 app.use('/', cartRoute)

@@ -9,3 +9,7 @@ export interface UserRequest extends Request{
 export interface ItemRequest extends Request{
     user?: string | JwtPayload
 }
+
+export interface CategoryRequest extends UserRequest{
+    user?: string | JwtPayload
+}

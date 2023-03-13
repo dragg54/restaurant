@@ -5,20 +5,23 @@ import { checkEmailDuplicate, findUserByEmail, hashPassword, unhashPassword } fr
 import jwt from 'jsonwebtoken'
 
 export const postUser = (req: Request, res: Response) => {
-    let { username, email, password } = req.body
+    let { username, email, password, firstname, lastname } = req.body
     checkEmailDuplicate(email)
         .then(() => {
             hashPassword(password).then((hash) => {
                 password = hash
                 let user = new User({
-                    username,
-                    email,
-                    password
+                    userName: username,
+                    email: email,
+                    password: password,
+                    firstName: firstname,
+                    lastName: lastname
                 })
                 user.save()
                     .then((user: IUser) => {
-                        res.status(200).send(user)
+                        res.status(201).send(user)
                     }).catch((err: string) => {
+                        console.log(err)
                         res.status(500).send(err)
                     })
             }).catch((err) => {

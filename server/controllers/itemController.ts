@@ -3,6 +3,8 @@ import { IUser } from "../types/user"
 import { isAdmin } from "../utils/helpers"
 import { Response } from 'express'
 import { Item } from "../models/item"
+import { Category } from "../models/category"
+import { CartItemSchema } from "../models/cart"
 
 export const postItem = async (req: UserRequest, res: Response) => {
     if (await isAdmin(req)) {
@@ -64,6 +66,44 @@ export const findItem = async(req: UserRequest, res: Response) =>{
     }
 }
 
+export const findItemByCategory = async(req: ItemRequest, res: Response) =>{
+    const category = req.params.category
+    if(category){
+       try{
+        const items = await Item.find({category})
+        if(items){
+            res.status(201).send(items)
+        }
+        else{
+            res.status(404).send('not found')
+        }
+       }
+       catch(error: any){
+        res.status(500).send({message: error.message})
+       }
+    }
+    
+}
+
+export const findItemByName = async(req: ItemRequest, res: Response) =>{
+    const name = req.params.name
+    if(name){
+       try{
+        const items = await Item.find({name})
+        if(items){
+            res.status(201).send(items)
+        }
+        else{
+            res.status(404).send('not found')
+        }
+       }
+       catch(error: any){
+        res.status(500).send({message: error.message})
+       }
+    }
+    
+}
+
 
 export const deleteItem = async(req: UserRequest, res: Response) =>{
     const id = req.params.id
@@ -79,28 +119,6 @@ export const deleteItem = async(req: UserRequest, res: Response) =>{
     else{
         res.status(409).send('you are not authorized to make this request')
     }
-}
-
-export const getItemByCategory = async(req: ItemRequest, res: Response) =>{
-    const category = req.params.category
-    if(await isAdmin(req as UserRequest)){
-        try{
-            const items = await Item.find({category})
-            if(items){
-                res.status(200).send(items)
-            }
-            else{
-                res.status(404).send('no items found')
-            }
-        }
-        catch(err){
-            res.sendStatus(500)
-        }
-    }
-    else{
-        res.status(403).send('you are not authorized to make this request')
-    }
-    
 }
 
 export const updateItem = async(req: UserRequest, res: Response) =>{
