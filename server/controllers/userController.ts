@@ -38,7 +38,7 @@ export const login = (req: Request, res: Response) => {
         const jwtSecretKey = process.env.SECRET_KEY!
         const token = jwt.sign({ id }, jwtSecretKey);
         res.cookie('auth', jwtSecretKey, { maxAge: 3600000, httpOnly: true, })
-        res.send(token);
+        res.json(token);
     }).catch((err) => {
         console.log(err)
     })

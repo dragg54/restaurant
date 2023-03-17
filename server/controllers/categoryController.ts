@@ -12,7 +12,7 @@ export const postCategory = async (req: CategoryRequest, res: Response) => {
         })
         category.save()
             .then((response) => {
-                res.status(200).send(category)
+                res.status(201).send(category)
             }).catch((err) => {
                 res.send(err)
             })

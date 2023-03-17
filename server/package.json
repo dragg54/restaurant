@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest --watch NODE_ENV=test --no-cache  --detectOpenHandles --runInBand --forceExit",
     "dev": "nodemon  ./index.ts",
     "start": "node ./dist/app.js",
     "dist": "tsc -p .",

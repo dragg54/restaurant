@@ -1,33 +1,35 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { dbConnect} from "./db/dbConnect"
+import { dbConnect } from "./db/dbConnect"
 import { userRoute } from "./routes/api/userRoutes"
-import {config} from 'dotenv'
+import { config } from 'dotenv'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import { itemRoute } from './routes/api/itemRoutes'
 import path from 'path'
 import { cartRoute } from './routes/api/cartRoutes'
 import { orderRoute } from './routes/api/orderRoutes'
-import { socketServer } from './socket-io/server'
 import { sendMail } from './utils/mailer'
+const { Server } = require('socket.io')
 
-config({path: __dirname + '/.env'})
+
+config({ path: __dirname + '/.env' })
 export const app = express()
-dbConnect() 
+const http = require('http').createServer(app)
+dbConnect()
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 // parse application/json
 app.use(bodyParser.json())
 // sendFile will go here
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '/public/index.html'));
-  });
- /*  app.post('/create-checkout-session', function(req, res) {
-    res.sendFile(path.join(__dirname, '/public/success.html'));
-  }); */
-  
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+});
+/*  app.post('/create-checkout-session', function(req, res) {
+   res.sendFile(path.join(__dirname, '/public/success.html'));
+ }); */
+
 app.use('/', userRoute)
 app.use('/', itemRoute)
 app.use('/', cartRoute)
@@ -35,8 +37,23 @@ app.use('/', orderRoute)
 app.use(express.static('public'));
 app.use('/static', (express.static(path.join(__dirname, 'public/images'))))
 const portNumber = process.env.PORT_NUMBER
-app.listen(portNumber, ()=>{
+export const server = app.listen(portNumber, () => {
   console.log('listening to port 8080')
 })
-socketServer()
+
+
+//configure io
+const io = new Server(server, {
+  cors: {
+    origin: 'http://localhost:3000'
+  }
+})
+io.on('connection', (socket: any) => {
+  console.log('connected to socket')
+  socket.on('sendMessage', (data: any) => {
+    socket.broadcast.emit('receiveMessage', data)
+    console.log(data)
+  })
+})
+
 
