@@ -1,11 +1,11 @@
 import React from 'react'
 import { NotificationIconContainer } from './NotificationIcon'
-import { GrNotification } from 'react-icons/gr'
+import { IoIosNotificationsOutline } from 'react-icons/io'
 
 const index = () => {
   return (
     <NotificationIconContainer>
-        <GrNotification style={{height: '100%', width: '20px', color: 'gray', marginRight: 'auto'}}/>
+        <IoIosNotificationsOutline style={{height: '30px', width: '30px', color: 'gray', marginRight: 'auto'}}/>
     </NotificationIconContainer>
   )
 }
