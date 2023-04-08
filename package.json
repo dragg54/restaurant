@@ -1,8 +1,5 @@
 {
   "dependencies": {
-    "react-icons": "^4.8.0"
-  },
-  "devDependencies": {
-    "babel-plugin-styled-components": "^2.0.7"
+    "react-router-dom": "^6.9.0"
   }
 }

@@ -1,9 +1,12 @@
 import React from 'react'
-import DashboardContainer from '../components/admin/layouts/dashboardContainer'
+import DashboardContainer from '@/components/dashboard/layouts/dashboardContainer'
+import { Outlet } from 'react-router-dom'
 
 const Dashboard = () => {
   return (
-    <DashboardContainer />
+    <div>
+      <DashboardContainer />
+    </div>
   )
 }
 

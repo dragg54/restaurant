@@ -4,4 +4,9 @@
     margin: 0;
     box-sizing: border-box;
     padding: 0;
+    list-style: none;
+    text-decoration-style: none;
+    font-family: 'Montserrat', sans-serif;
+
 }
+
