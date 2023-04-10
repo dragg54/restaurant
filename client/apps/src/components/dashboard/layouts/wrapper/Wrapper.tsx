@@ -5,7 +5,8 @@ export const Wrapper = style.div`
     height: 100%;
     padding: 25px 100px;
     display: flex;
+    align-items: center;
     flex-direction: column;
-    justify-items: flex-start;
+    justify-content: flex-start;
     background-color: #fff;
 `

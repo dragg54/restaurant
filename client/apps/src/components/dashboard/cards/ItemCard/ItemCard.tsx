@@ -1,7 +1,7 @@
 import style from 'styled-components'
 
 export const ItemCard = style.div`
-    width: 300px;
+    width: 24%;
     height: 320px;
     border-radius: 5px;
     box-shadow: 2px 2px 2px gray;

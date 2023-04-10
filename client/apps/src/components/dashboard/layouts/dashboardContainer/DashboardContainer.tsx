@@ -7,6 +7,7 @@ export const DashboardContainer = style.div`
     background-color: #efefef;
     display: grid;
     grid-gap: 5px;
+    position: relative;
     grid-template-columns: repeat(8, 1fr);
 `
 

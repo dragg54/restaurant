@@ -3,11 +3,14 @@ import React from 'react'
 
 export const ModalContext = createContext<null | {
     openModal: boolean,
-    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
-}>(null)
+    setOpenModal: null | React.Dispatch<React.SetStateAction<boolean>>
+}>({openModal: false, setOpenModal: null})
 
+type ModalProps = {
+  children: React.ReactNode
+}
 
-const ModelContextProvider = ({children}) => {
+const ModelContextProvider = ({children}: ModalProps) => {
     const [openModal, setOpenModal] = useState(false)
   return (
     <ModalContext.Provider value={{openModal, setOpenModal}}>
