@@ -11,7 +11,6 @@ export const Navbar = style.div`
     justify-content: space-between;
     align-items: center;
     padding: 0px 25px;
-    height: 70px;
     box-sizing: border-box;
 `
 

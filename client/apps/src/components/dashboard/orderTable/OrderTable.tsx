@@ -6,6 +6,7 @@ export const OrderTable = styled.div`
     grid-template-columns: repeat(8, 1fr);
     width: 1100px;
     margin-top: 40px;
+    border: 1px solid gray;
 
 `
 export const OrderHeaderContainer = styled.div`
