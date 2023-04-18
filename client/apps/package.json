@@ -9,13 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "chart.js": "^3.8.0",
+    "chartjs-plugin-streaming": "^2.0.0",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.9.0",
     "styled-components": "^5.3.9"
   },
   "devDependencies": {
+    "@types/chart.js": "^2.9.37",
     "@types/node": "^18.15.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",

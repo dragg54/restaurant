@@ -10,7 +10,7 @@ const Items = () => {
   const setOpenModal: null | React.Dispatch<React.SetStateAction<boolean>> = useContext(ModalContext)!.setOpenModal
   return (
     <Wrapper>
-      <div style={{ display: 'flex', width: "100%", justifyContent: "space-between", alignItems: "center" }}>
+      <div style={{ display: 'flex', width: "100%", justifyContent: "space-between", alignItems: "center", marginTop: "30px" }}>
         <div style={{fontSize:"0.8 rem", borderRadius:"5px", color:"gray", width: "150px", height: '30px', border: "1px solid gray", display: 'flex', padding: "5px", justifyContent: "space-between", alignItems: "center", alignSelf: "flex-start" }}>
           <span>filter</span>
           <FiChevronDown />

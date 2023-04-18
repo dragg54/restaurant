@@ -8,6 +8,7 @@ import Orders from './pages/Orders'
 import Payments from './pages/Payments'
 import Reviews from './pages/Reviews'
 import Settings from './pages/Settings'
+import Staff from './pages/Staff'
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="items" element={<Items />} />
           <Route path="payments" element={<Payments />} />
           <Route path="reviews" element={<Reviews />} />
+          <Route path="staff" element={<Staff />} />
           <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>

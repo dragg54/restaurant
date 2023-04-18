@@ -1,6 +1,6 @@
 import React from 'react'
 import { Wrapper } from '../components/dashboard/layouts/wrapper/Wrapper'
-import PaymentTable from '../components/dashboard/paymentTable'
+import PaymentTable from '../components/dashboard/tables/paymentTable'
 import { BiCalendar } from 'react-icons/bi'
 
 const Payments = () => {

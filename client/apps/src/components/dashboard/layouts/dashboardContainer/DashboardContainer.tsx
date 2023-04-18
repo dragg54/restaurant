@@ -1,17 +1,20 @@
 import React from 'react'
-import style from 'styled-components'
+import styled from 'styled-components'
 
-export const DashboardContainer = style.div`
-    height: 100vh;
-    width: 100wh;
-    background-color: #efefef;
+export const DashboardContainer = styled.div`
+    width: 100vw;
+    background-color: #F6F4F0;
     display: grid;
     grid-gap: 10px 15px;
     position: relative;
     grid-template-columns: repeat(8, 1fr);
+    overflow-y: visible;
+
 `
 
-export const OutletContainer = style.div`
+export const OutletContainer = styled.div`
     grid-column: 2/span 9;
     grid-row: 2 / span 9;
-    background-color: #efefef`
+    height: 100%;
+    margin-top: 50px;
+    `

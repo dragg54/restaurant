@@ -6,12 +6,16 @@ export const Navbar = style.div`
     background-color: #fff;
     grid-column: 1/ span 9;
     grid-row: 1;
+    z-index: 10;
     box-shadow: 2px 2px #efefef;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0px 25px;
     box-sizing: border-box;
+    height: 80px;
+    position: fixed;
+    width: 100%;
 `
 
 export const Logo = style.p`

@@ -2,17 +2,20 @@ import style from 'styled-components'
 
 export const SideBar = style.div`
     grid-column: 1;
-    background-color: #fff;
-    grid-row: 2/ span 9;
+    grid-row: 2/ span 10;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: fixed;
+    height: 100vh;
+    margin-top: 80px;
+    background: white
 `
 
 export const SideBarMenuContainer = style.div`
-    height: 400px;
-    width: 100%;
+    width: 100;
     margin-top: 40px;
+    height: 100vh;
 `
 
 export const MenuContainer = style.div`
@@ -25,7 +28,7 @@ export const MenuContainer = style.div`
     align-items: center;
     color: gray;
     &:hover{
-    background-color: gray;
+    background-color: red;
     color: white;
     &:hover{
         cursor: pointer

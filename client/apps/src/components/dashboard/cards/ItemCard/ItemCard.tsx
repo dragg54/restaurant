@@ -21,7 +21,7 @@ export const ItemImageContainer = style.div`
 export const ItemDescriptionContainer = style.div`
     width: 100%;
     height: 45%;
-    background-color: #EAEFF2;
+    background-color: #fff;
     padding: 10px;
     display: flex;
     flex-direction: column;

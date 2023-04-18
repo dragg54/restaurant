@@ -7,6 +7,7 @@ import PaymentIcon from '@@/commons/icons/PaymentIcon'
 import ReviewIcon from '@@/commons/icons/ReviewIcon'
 import SettingsIcon from '@@/commons/icons/SettingsIcon'
 import { Link } from 'react-router-dom'
+import StaffIcon from '../../../commons/icons/StaffIcon'
 
 
 const index = () => {
@@ -41,6 +42,12 @@ const index = () => {
           <MenuContainer>
             <ReviewIcon />
             <MenuList>Reviews</MenuList>
+          </MenuContainer>
+        </Link>
+        <Link to="staff" style={{ textDecoration: "none" }}>
+          <MenuContainer>
+            <StaffIcon />
+            <MenuList>Staff</MenuList>
           </MenuContainer>
         </Link>
         <Link to="settings" style={{ textDecoration: "none" }}>
