@@ -17,7 +17,7 @@ const index = () => {
             Role
         </TableHeadingContainer>
         <TableHeadingContainer style={{gridColumn: 6}}>
-            Access
+            Access Level
         </TableHeadingContainer>
         <TableDataContainer style={{gridColumn: 1}}>
             Active

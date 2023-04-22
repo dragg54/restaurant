@@ -1,6 +1,7 @@
-import React from 'react'
-import { ItemCard, ItemDescriptionContainer, ItemImageContainer, ItemImg } from './ItemCard'
+import React, { MutableRefObject, useContext } from 'react'
+import { ItemCard, ItemDescriptionContainer, ItemDescriptionSubContainer, ItemImageContainer, ItemImg } from './ItemCard'
 import { AiFillStar } from 'react-icons/ai'
+import { ModalContext } from '../../../../contexts/ModalContext'
 
 type ItemProps = {
     price: number,
@@ -11,17 +12,26 @@ type ItemProps = {
     rating: number
 }
 
-const index = ({price, description, discount, image, name, rating}: ItemProps) => {
-    for(let i = 0; i <= Math.floor(rating); i++){
-        
-    }
+type OpenModal = {
+    openModal: boolean 
+}
 
+const index = ({price, description, discount, image, name, rating}: ItemProps) => {
+    for(let i = 0; i <= Math.floor(rating); i++){   
+    }
+const openModal = useContext(ModalContext)?.openModal
+const setOpenModal = useContext(ModalContext)?.setOpenModal!
+const modalRef: MutableRefObject<null | HTMLDivElement> = useContext(ModalContext)?.modalRef!
   return (
-    <ItemCard>
-        <ItemImageContainer>
-            <ItemImg src="images/items/Burger1.jpg" alt="image" />
+    <ItemCard id="modcon" onClick={()=>{
+        setOpenModal(true)
+        console.log(openModal)
+    }}>
+        <ItemImageContainer >
+            <ItemImg src="images/items/Burger1.jpg" alt="image"/>
         </ItemImageContainer>
         <ItemDescriptionContainer>
+            <ItemDescriptionSubContainer/>
             <h4>{name}</h4>
             <h1>${price}</h1>
             <p>{description}</p>

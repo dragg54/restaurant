@@ -3,7 +3,7 @@ import Wrapper from '../components/dashboard/layouts/wrapper/index'
 import ItemCard from '../components/dashboard/cards/ItemCard'
 import PrimaryButton from '../components/commons/button/primaryButton/index'
 import { BiPlusMedical } from 'react-icons/bi'
-import { ModalContext } from '../contexts/ModelContext'
+import { ModalContext } from '../contexts/ModalContext'
 import { FiChevronDown } from 'react-icons/fi'
 
 const Items = () => {

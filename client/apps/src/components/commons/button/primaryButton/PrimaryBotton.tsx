@@ -8,5 +8,6 @@ export const PrimaryButton = style.button`
     border-radius: 5px;
     border: gray;
     outline: red;
-    font-weight: bold
+    font-weight: bold;
+    cursor: pointer
 `

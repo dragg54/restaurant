@@ -28,7 +28,7 @@ export const MenuContainer = style.div`
     align-items: center;
     color: gray;
     &:hover{
-    background-color: red;
+    background-color: #B9B7BD;
     color: white;
     &:hover{
         cursor: pointer
