@@ -10,7 +10,7 @@ export const StaffTable = styled.div`
 `
 
 export const TableHeadingContainer = styled.div`
-    background-color: red;
+    background-color: #04D010;
     width: 100%;
     border: 1px solid gray;
     padding: 30px 20px;

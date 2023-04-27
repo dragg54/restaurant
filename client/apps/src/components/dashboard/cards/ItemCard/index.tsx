@@ -2,6 +2,8 @@ import React, { MutableRefObject, useContext } from 'react'
 import { ItemCard, ItemDescriptionContainer, ItemDescriptionSubContainer, ItemImageContainer, ItemImg } from './ItemCard'
 import { AiFillStar } from 'react-icons/ai'
 import { ModalContext } from '../../../../contexts/ModalContext'
+import { ItemContext } from '../../../../contexts/ItemContext'
+import { useFetchItem } from '../../../../api'
 
 type ItemProps = {
     price: number,
@@ -17,11 +19,14 @@ type OpenModal = {
 }
 
 const index = ({price, description, discount, image, name, rating}: ItemProps) => {
+    useFetchItem('http://localhost:8080/api/v1/items')
     for(let i = 0; i <= Math.floor(rating); i++){   
     }
+const {itemState} = useContext(ItemContext)
 const openModal = useContext(ModalContext)?.openModal
 const setOpenModal = useContext(ModalContext)?.setOpenModal!
 const modalRef: MutableRefObject<null | HTMLDivElement> = useContext(ModalContext)?.modalRef!
+console.log('items', itemState)
   return (
     <ItemCard id="modcon" onClick={()=>{
         setOpenModal(true)

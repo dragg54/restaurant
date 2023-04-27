@@ -19,7 +19,7 @@ export const Navbar = style.div`
 `
 
 export const Logo = style.p`
-    color: #E10032;
+    color: #04D010;
     font-family: 'Pacifico', cursive;
     font-weight: bold;
     font-size: 1.3rem

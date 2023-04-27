@@ -26,7 +26,7 @@ const index = () => {
     })
     return (
         <CalendarWrapper>
-            <BiCalendar id='calendar' style={{ alignSelf: 'flex-end', width: '50px', height: '50px', color: 'red', cursor: "pointer" }} onClick={() => {
+            <BiCalendar id='calendar' style={{ alignSelf: 'flex-end', width: '50px', height: '50px', color: '#008000', cursor: "pointer" }} onClick={() => {
                 showCalendar()
             }} />
             <CalendarContainer style={{display: toggleCalendar? "block": "none"}} ref={calendar}>

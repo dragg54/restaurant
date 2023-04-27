@@ -8,7 +8,7 @@ type FormType = {
       isEditItemForm: boolean | null
 }
 
-export const ModalContext = createContext<null | {
+export const ModalContext = createContext<{
     openModal: boolean,
     setOpenModal: null | React.Dispatch<React.SetStateAction<boolean>>
     modalRef:  null | MutableRefObject<HTMLDivElement | null>

@@ -8,14 +8,25 @@ import { FiChevronDown } from 'react-icons/fi'
 
 const Items = () => {
   const setOpenModal: null | React.Dispatch<React.SetStateAction<boolean>> = useContext(ModalContext)!.setOpenModal
+  const formType = useContext(ModalContext)?.formType
+  const setFomType = useContext(ModalContext)?.setFormType!
   return (
     <Wrapper>
       <div style={{ display: 'flex', width: "100%", justifyContent: "space-between", alignItems: "center", marginTop: "30px" }}>
-        <div style={{fontSize:"0.8 rem", borderRadius:"5px", color:"gray", width: "150px", height: '30px', border: "1px solid gray", display: 'flex', padding: "5px", justifyContent: "space-between", alignItems: "center", alignSelf: "flex-start" }}>
+        <div style={{ fontSize: "0.8 rem", borderRadius: "5px", color: "gray", width: "150px", height: '30px', border: "1px solid gray", display: 'flex', padding: "5px", justifyContent: "space-between", alignItems: "center", alignSelf: "flex-start" }}>
           <span>filter</span>
           <FiChevronDown />
         </div>
-        <PrimaryButton bg="#E10032" icon={<BiPlusMedical />} buttonValue='Add Item' />
+        <div onClick={() => {
+          setFomType({
+            isAddItemForm: true,
+            isAddRoleForm: false,
+            isEditItemForm: false,
+            isEditRoleForm: false
+          })
+        }}>
+          <PrimaryButton bg="#04D010" icon={<BiPlusMedical />} buttonValue='Add Item' />
+        </div>
       </div>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "30px 15px", margin: "60px auto", boxSizing: "content-box", justifyContent: "flex-start" }}>
         <ItemCard price={5} description='good taste, delicious feeling' name='palace burger' discount={20} image="" rating={4.25} />

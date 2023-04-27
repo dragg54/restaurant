@@ -6,6 +6,7 @@ import { Outlet } from 'react-router-dom'
 import Section from '../section'
 import { ModalContext } from '../../../../contexts/ModalContext'
 import ItemForm from '../../../commons/forms/ItemForm'
+import StaffForm from '../../../commons/forms/staffForm'
 
 type ModalState = {
     openModal: boolean,
@@ -20,12 +21,18 @@ const index = () => {
     // const {openModal, setOpenModal}:null | ModalState= useContext(ModalContext)
     const openModal: boolean = useContext(ModalContext)!.openModal
     const setOpenModal: null | React.Dispatch<React.SetStateAction<boolean>> = useContext(ModalContext)!.setOpenModal
+    const formType = useContext(ModalContext)?.formType
    /*  */return (
         <DashboardContainer>
             {/* modal */}
-            <div style={{zIndex:1500, position: "absolute", width: "100%", height: "100vh", overflow:'hidden', background: 'rgba(220,220,220, 0.5)', justifyContent: 'center', alignItems: 'center',  display: openModal ? 'flex' : 'none' }}>
+            <div style={{ zIndex: 1500, position: "absolute", width: "100%", height: "100vh", overflow: 'hidden', background: 'rgba(220,220,220, 0.5)', justifyContent: 'center', alignItems: 'center', display: openModal ? 'flex' : 'none' }}>
                 <div ref={modalRef}>
-                    <ItemForm />
+                    <div style={{ display: formType?.isAddRoleForm ? 'block' : 'none' }}>
+                        <StaffForm />
+                    </div>
+                    <div style={{ display: formType?.isAddItemForm ? 'block' : 'none' }}>
+                        <ItemForm />
+                    </div>
                 </div>
             </div>
             <Navbar />

@@ -4,13 +4,16 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import './index.css'
 import ModelContextProvider from './contexts/ModalContext'
+import { ItemContextProvider } from './contexts/ItemContext'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ModelContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ModelContextProvider>
+    <ItemContextProvider>
+      <ModelContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ModelContextProvider>
+    </ItemContextProvider>
   </React.StrictMode>,
 )

@@ -11,9 +11,9 @@ const storage = multer.diskStorage({
         cb(null, file.originalname)
     }
 });
-const upload = multer({storage})
+const upload = multer({storage, limits: { fieldSize: 10 * 1024 * 1024 }})
 
-itemRoute.post('/api/v1/item/create', upload.single('image'), verify, postItem)
+itemRoute.post('/api/v1/item/create', upload.single('image'),  postItem)
 itemRoute.get('/api/v1/items', verify, findItems)
 itemRoute.get('/api/v1/item/:id', verify, findItem)
 itemRoute.get('/api/v1/items/:category', findItemByCategory)

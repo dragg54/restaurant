@@ -7,7 +7,7 @@ export const PrimaryButton = style.button`
     align-items: center;
     border-radius: 5px;
     border: gray;
-    outline: red;
+    outline: #04D010;
     font-weight: bold;
     cursor: pointer
 `

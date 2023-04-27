@@ -4,6 +4,7 @@ export const ItemCard = styled.div`
     width: 24%;
     height: 320px;
     border-radius: 5px;
+    position: relative;
     box-shadow: 2px 2px 2px gray;
     overflow: hidden;
     color: #050A30;

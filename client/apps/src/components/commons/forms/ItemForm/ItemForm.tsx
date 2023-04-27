@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ItemFormContainer = styled.div`
     width: 500px;
-    height: 390px;
+    height: 455px;
     border: 1px solid gray;
     border-radius: 4px;
     background-color: #fff;
@@ -24,7 +24,7 @@ export const ItemForm = styled.form`
 `
 export const NameInput = styled.input`
     width: 100%;
-    grid-row: 1/ span 2;
+    grid-row: 2/ span 3;
     grid-column: 1/ span 2;
     height: 40px;
     border-radius: 5px;
@@ -39,7 +39,7 @@ export const NameInput = styled.input`
 
 export const CategoryInput = styled.input`
     width: 100%;
-    grid-row: 1;
+    grid-row: 2;
     grid-column: 3;
     height: 40px;
     border-radius: 5px;
@@ -55,7 +55,7 @@ export const CategoryInput = styled.input`
 
 export const DescriptionInput = styled.textarea`
     width: 100%;
-    grid-row: 2/ span 5;
+    grid-row: 3/ span 6;
     grid-column: 1/ span 3;
     padding: 8px;
     border: 5px;
@@ -70,7 +70,7 @@ export const DescriptionInput = styled.textarea`
 
 export const PriceInput = styled.input`
     width: 100%;
-    grid-row: 7;
+    grid-row: 9;
     grid-column: 1;
     height: 40px;
     border-radius: 5px;
@@ -84,7 +84,7 @@ export const PriceInput = styled.input`
 
 export const QuantityInput = styled.input`
     width: 100%;
-    grid-row: 7;
+    grid-row: 9;
     grid-column: 2;
     height: 40px;
     border-radius: 5px;
@@ -98,7 +98,7 @@ export const QuantityInput = styled.input`
 
 export const DiscountInput = styled.input`
     width: 100%;
-    grid-row: 7;
+    grid-row: 9;
     grid-column: 3;
     height: 40px;
     border-radius: 5px;
@@ -113,7 +113,7 @@ export const DiscountInput = styled.input`
 export const FileInputContainer = styled.div`
   width: 100%;
   height: 50px;
-   grid-row: 8;
+   grid-row: 10;
     grid-column: 1/ span 2; 
     padding:'';
     display: flex;
@@ -125,7 +125,9 @@ export const FileInput = styled.input`
     position: absolute;
     left: 22px;
     font-size: 1rem;
-    color: gray
+    color: gray;
+    border: none;
+    background-color: transparent;
 `
 
 export const FileInputLabel = styled.label`
@@ -151,7 +153,7 @@ export const SaveButton = styled.button`
     height: 50px;
     color: white;
     background: #E10032;
-    grid-row: 9;
+    grid-row: 11;
     grid-column: 1/ span 3;
     font-weight: bold;
     border-radius: 5px;

@@ -7,33 +7,34 @@ import { Category } from "../models/category"
 import { CartItemSchema } from "../models/cart"
 
 export const postItem = async (req: UserRequest, res: Response) => {
-    if (await isAdmin(req)) {
-        const { name, price, quantity, description, category, updateAt, updateBy } = req.body
+    // if (await isAdmin(req)) {
+        const { name, price, quantity, description, category, updateAt,  updateBy } = req.body
         const item = new Item({
             name,
             price,
             quantity,
-            image: {
+            image:{
                 data: req.file.filename,
-                contentType: 'image/jpeg'
+                contentType: 'image/png'
             },
             description,
             category,
             createdAt: Date.now(),
-            createdBy: (req.user as IUser).id,
+            // createdBy: (req.user as IUser).id,
             updateAt,
             updateBy
         })
         item.save()
             .then((response) => {
+                console.log('saved')
                 res.status(200).send(item)
             }).catch((err) => {
                 res.send(err)
-            })
-    }
-    else {
-        res.status(409).send('you are not authorized to make this request')
-    }
+           })
+    // }
+    // else {
+    //     res.status(409).send('you are not authorized to make this request')
+    // }
 }
 
 export const findItems = async (req: UserRequest, res: Response) => {

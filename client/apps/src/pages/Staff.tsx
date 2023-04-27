@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import StaffTable from '../components/dashboard/tables/staffTable'
 import { Wrapper } from '../components/dashboard/layouts/wrapper/Wrapper'
 import PrimaryButton from '../components/commons/button/primaryButton'
@@ -7,13 +7,25 @@ import SearchField from '../components/commons/forms/SearchField'
 import { FiChevronDown } from 'react-icons/fi'
 import { Input } from '../components/commons/forms/SearchField/SearchField'
 import SearchIcon from '../components/commons/icons/SearchIcon'
+import { ModalContext } from '../contexts/ModalContext'
 
 const Staff = () => {
+  const formType = useContext(ModalContext)?.formType
+  const setFomType = useContext(ModalContext)?.setFormType!
   return (
     <Wrapper>
       <div style={{ display: 'flex', width: "95%", justifyContent: "space-between", alignItems: "center", marginTop: "30px" }}>
         <h1 style={{ fontWeight: "bold" }}>Staff Roles</h1>
-        <PrimaryButton bg="#E10032" icon={<BiPlusMedical />} buttonValue='Add Staff' />
+        <div onClick={()=>{
+          setFomType({
+            isAddItemForm: false,
+            isAddRoleForm: true,
+            isEditItemForm: false,
+            isEditRoleForm: false
+          })
+        }}>
+        <PrimaryButton bg="#04D010" icon={<BiPlusMedical />} buttonValue='Add Staff'/>
+        </div>
       </div>
       <div style={{ display: 'flex', width: "95%", justifyContent: "flex-start", alignItems: "center", marginTop: "30px" }}>
         <div style={{ fontSize: "0.8 rem", borderRadius: "5px", color: "gray", width: "150px", height: '30px', border: "1px solid gray", display: 'flex', padding: "5px", justifyContent: "space-between", alignItems: "center", alignSelf: "flex-start" }}>
