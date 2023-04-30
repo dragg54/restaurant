@@ -5,7 +5,6 @@ import { ModalContext } from '../contexts/ModalContext'
 
 const Dashboard = () => {
   const openModal = useContext(ModalContext)?.openModal
-
   return (
     <div style={{overflow: openModal? 'hidden': 'visible', height: openModal?'100vh':""}}>
       <DashboardContainer />

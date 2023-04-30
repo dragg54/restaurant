@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react'
 import { CategoryInput, DescriptionInput, DiscountInput, FileInput, FileInputContainer, FileInputLabel, ItemForm, ItemFormContainer, NameInput, PriceInput, QuantityInput, SaveButton } from './ItemForm'
 import PrimaryButton from '../../button/primaryButton'
 import { postRequest } from '../../../../api'
-import { Item } from '../../../../../types/ItemType'
+import { Item } from '../../../../types/ItemType'
 
 const index = () => {
   const formData = new FormData()

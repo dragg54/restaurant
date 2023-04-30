@@ -11,9 +11,13 @@ const index = () => {
         <Logo>
             Becca's
         </Logo>
-        <SearchField />
+        {window.location.pathname !== "/signin" &&
+         <SearchField />
+         &&
         <NotificationIcon/>
+        &&
         <CurrentUserContainer/>
+  }
     </Navbar>
   )
 }

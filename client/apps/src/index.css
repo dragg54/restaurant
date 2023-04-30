@@ -21,16 +21,21 @@ input{
     border-radius: 4px;
 }
 
+input:hover{
+    border: 2px solid greenyellow
+}
+
+
 input[type = "text"]:hover{
-    border: 2px solid red
+    border: 2px solid greenyellow
 }
 
 input[type = "number"]:hover{
-    border: 2px solid red
+    border: 2px solid greenyellow
 }
 
 textarea:hover{
-    border: 2px solid red;
+    border: 2px solid greenyellow;
 
 }
 

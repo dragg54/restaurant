@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { useContext, useEffect } from 'react'
 import { ItemContext } from '../contexts/ItemContext'
-import { Item, ItemAction } from '../../types/ItemType'
+import { Item, ItemAction } from '../types/ItemType'
+import { User } from '../types/User'
+import { AuthContext } from '../contexts/AuthContextProvider'
 
 export const postRequest = (url: string, req: Item) => {
     const { dispatchItemAction, setIsLoading , itemState} = useContext(ItemContext)
@@ -32,14 +34,28 @@ export const postRequest = (url: string, req: Item) => {
 export const useFetchItem = (url: string) => {
     const { dispatchItemAction, setIsLoading , itemState} = useContext(ItemContext)
     useEffect(() => {
+        setIsLoading!(true)
         axios.get(url)
             .then((response) => {
                 if (response) {
                     dispatchItemAction!({ type: ItemAction.FETCH_ITEM, payload: { data: response.data } })
-                    setIsLoading ?? setIsLoading!(false)
+                    setIsLoading!(false)
                 }
             }).catch((err) => {
                 console.log(err)
             })
     }, [itemState])
+}
+
+export const postSignInRequest = (url: string, req:User) =>{
+    const {setToken, isLoading, setIsLoading} = useContext(AuthContext)
+    function postRequest(){
+        axios.post(url, req)
+        .then((response)=>{
+            setToken!(response.data)
+            sessionStorage.setItem('auth', JSON.stringify(response.data))
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
 }

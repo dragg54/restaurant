@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useContext, useReducer, useState } from "react";
 import { initialItemState, itemReducer } from "../reducers/ItemReducer";
-import { Item } from "../../types/ItemType";
+import { Item } from "../types/ItemType";
 import { createContext } from "react";
 
 export const ItemContext = createContext<{

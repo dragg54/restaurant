@@ -1,4 +1,4 @@
-import { ItemAction, Item } from "../../types/ItemType"
+import { ItemAction, Item } from "../types/ItemType"
 
 interface IAction {
     type: unknown,
