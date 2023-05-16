@@ -15,7 +15,7 @@ export const OrderHeaderContainer = styled.div`
     width: 100%;
     height: 70px;
     border: 1px solid gray;
-    background: #04D010;
+    background: #FF2511;
     display: flex;
     padding: 10px;
     align-items: center;

@@ -20,6 +20,9 @@ export const ItemImageContainer = styled.div`
     background-color: purple;
     object-fit: contain;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
    
 `
 
@@ -37,7 +40,7 @@ export const ItemDescriptionSubContainer = styled.div`
     position: absolute;
     height: 100%;
     width: 100%;
-    z-index: 100;
+    z-index:-100;
     background-color: transparent;
 `
 

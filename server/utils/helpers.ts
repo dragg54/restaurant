@@ -39,15 +39,22 @@ export function findUserByEmail(email: string) {
 export function unhashPassword(email: string, password: string) {
     return new Promise((resolve, reject) => {
         findUserByEmail(email).then((data: any) => {
-            data.map((user: IUser) => bcrypt.compare(password, user.password, (err, isMatch) => {
-                if (!err) resolve(user.id)
-                else reject(err)
-            }))
+            if(data && data.length > 0){
+                data.map((user: IUser) => bcrypt.compare(password, user.password, (err, isMatch) => {
+                    if (!err) resolve(user.id)
+                    else reject(err)
+                }))
+            }
+            else{
+                reject("User does not exist")
+            }
+        }).catch((err)=>{
+            reject(err)
         })
     })
 }
 
-export function isAdmin(req: UserRequest):Promise<boolean>{
+export async function isAdmin(req: UserRequest):Promise<boolean>{
     const userId = (req.user as IUser)?.id
     return User.findOne({id: userId})
     .then((user)=>{

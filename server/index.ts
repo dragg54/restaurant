@@ -19,7 +19,11 @@ const http = require('http').createServer(app)
 dbConnect()
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(cors())
+app.use(cors({
+  origin: "http://localhost:5173",
+  allowedHeaders: "*",
+  credentials: true
+}))
 // parse application/json
 app.use(bodyParser.json())
 // sendFile will go here
@@ -35,7 +39,7 @@ app.use('/', itemRoute)
 app.use('/', cartRoute)
 app.use('/', orderRoute)
 app.use(express.static('public'));
-app.use('/static', (express.static(path.join(__dirname, 'public/images'))))
+app.use('/', (express.static(path.join(__dirname, 'public/images'))))
 const portNumber = process.env.PORT_NUMBER
 export const server = app.listen(portNumber, () => {
   console.log('listening to port 8080')

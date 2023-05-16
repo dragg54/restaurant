@@ -1,4 +1,4 @@
-import { ItemAction, Item } from "../types/ItemType"
+import { ItemAction, Item } from "../types/Item"
 
 interface IAction {
     type: unknown,
@@ -13,7 +13,7 @@ export const itemReducer = (state: [Item], action: IAction) => {
     let itemIndex: number;
     switch (action.type) {
         case ItemAction.FETCH_ITEM:
-            return [...state, action.payload.data]
+            return action.payload.data
             
         case ItemAction.ADD_ITEM:
             if (state && state.length > 0) {
@@ -35,5 +35,10 @@ export const itemReducer = (state: [Item], action: IAction) => {
             itemIndex = state.findIndex(x => x.id == action.payload.item.id)
             state.splice(itemIndex, itemIndex + 1) 
             state[itemIndex] = action.payload.item
+        
+        case ItemAction.FIND_ITEM:
+           let item = state.find(x => x.id == action.payload.item.id)
+           return [item]
+            
     }
 }

@@ -3,14 +3,14 @@ import styled from 'styled-components'
 export const StaffTable = styled.div`
     display: grid;
     width: 95%;
-    background-color: green;
+    background-color: #FFCD58;
     grid-template-columns: repeat(6, 1fr);
     margin-top: 40px;
     background-color: #fff;
 `
 
 export const TableHeadingContainer = styled.div`
-    background-color: #04D010;
+    background-color: #FF2511;
     width: 100%;
     border: 1px solid gray;
     padding: 30px 20px;

@@ -10,7 +10,7 @@ const index = () => {
         <SignupFormContainer>
             <SignupForm>
                 <h1 style={{ alignSelf: "flex-start", color: 'black', fontSize: '1.2rem' }}>Get Started</h1>
-                <p style={{ alignSelf: "flex-start", color: 'gray', fontSize: '0.8rem', marginTop: "9px" }}>Create your account</p>
+                <p style={{ alignSelf: "flex-start", color: 'gray', fontSize: '0.8rem', marginTop: "9px" }}>Already have an account? <span style={{color:'red'}}>Sign in</span></p>
                 <FirstNameField type='text' placeholder='Enter first name' />
                 <LastNameField type='text' placeholder='Enter last name' />
                 <EmailField type='email' placeholder='Enter email' />

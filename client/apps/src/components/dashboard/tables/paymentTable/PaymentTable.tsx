@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const PaymentTable = styled.div`
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    width: 850px;
+    width: 1000px;
     margin-top: 40px;
     border: 1px solid gray;
     border-top-right-radius: 5px ;
@@ -13,7 +13,7 @@ export const PaymentHeaderContainer = styled.div`
     width: 100%;
     height: 70px;
     border: 1px solid gray;
-    background: #04D010;
+    background: #FF2511;
     display: flex;
     padding: 10px;
     align-items: center;

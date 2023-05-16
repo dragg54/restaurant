@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useContext, useReducer, useState } from "react";
 import { initialItemState, itemReducer } from "../reducers/ItemReducer";
-import { Item } from "../types/ItemType";
+import { Item } from "../types/Item";
 import { createContext } from "react";
 
 export const ItemContext = createContext<{
-    itemState: never | null,
+    itemState: [Item] | null,
     dispatchItemAction: React.Dispatch<any> | null,
     isLoading: null | boolean,
     setIsLoading: null| Dispatch<SetStateAction<boolean>>
@@ -21,8 +21,6 @@ type ItemContextProps = {
 export const ItemContextProvider = ({children}: ItemContextProps) =>{
     const[itemState, dispatchItemAction] = useReducer(itemReducer, initialItemState)
     const[isLoading, setIsLoading] = useState(true)
-
-    console.log("items", itemState)
     return(
         <ItemContext.Provider value={{itemState, dispatchItemAction, isLoading, setIsLoading}}>
             {children}

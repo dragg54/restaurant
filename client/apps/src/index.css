@@ -25,6 +25,10 @@ input:hover{
     border: 2px solid greenyellow
 }
 
+input[type="file"]{
+    border: none
+}
+
 
 input[type = "text"]:hover{
     border: 2px solid greenyellow

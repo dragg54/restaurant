@@ -41,6 +41,7 @@ export const login = (req: Request, res: Response) => {
         res.json(token);
     }).catch((err) => {
         console.log(err)
+       res.status(404).send(err)
     })
 }
 

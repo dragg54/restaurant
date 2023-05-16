@@ -9,7 +9,7 @@ type AuthActionProp = {
 }
  const index = ({authAction}: AuthActionProp) => {
   return (
-    <AuthButton>
+    <AuthButton type='submit'>
        {authAction.signin? "Log In": "Sign Up"}
     </AuthButton>
   )

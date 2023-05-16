@@ -24,7 +24,7 @@ const Staff = () => {
             isEditRoleForm: false
           })
         }}>
-        <PrimaryButton bg="#04D010" icon={<BiPlusMedical />} buttonValue='Add Staff'/>
+        <PrimaryButton bg="#FFCD58" icon={<BiPlusMedical />} buttonValue='Add Staff'/>
         </div>
       </div>
       <div style={{ display: 'flex', width: "95%", justifyContent: "flex-start", alignItems: "center", marginTop: "30px" }}>

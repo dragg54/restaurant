@@ -3,53 +3,69 @@ import { ItemCard, ItemDescriptionContainer, ItemDescriptionSubContainer, ItemIm
 import { AiFillStar } from 'react-icons/ai'
 import { ModalContext } from '../../../../contexts/ModalContext'
 import { ItemContext } from '../../../../contexts/ItemContext'
-import { useFetchItem } from '../../../../api'
+import { FormItemContext } from '../../../../contexts/FormItemContext'
+import { Item } from '../../../../types/Item'
 
 type ItemProps = {
+    id: number,
     price: number,
     description: string,
     discount: number,
-    image: string,
+    image: {
+        data: ArrayBufferLike
+
+    },
     name: string,
     rating: number
 }
 
 type OpenModal = {
-    openModal: boolean 
+    openModal: boolean
 }
 
-const index = ({price, description, discount, image, name, rating}: ItemProps) => {
-    useFetchItem('http://localhost:8080/api/v1/items')
-    for(let i = 0; i <= Math.floor(rating); i++){   
+const index = ({id, price, description, discount, image, name, rating }: ItemProps) => {
+    const openModal = useContext(ModalContext)?.openModal
+    const setOpenModal = useContext(ModalContext)?.setOpenModal!
+    const { setFormType } = useContext(ModalContext)
+    const modalRef: MutableRefObject<null | HTMLDivElement> = useContext(ModalContext)?.modalRef!
+    const base64String = btoa(String.fromCharCode(...new Uint8Array(image?.data)))
+    const { itemState } = useContext(ItemContext)
+
+    const { itemToBeUpdated, setItemToBeUpdated}  = useContext(FormItemContext)!
+    const getItem = (id: number) =>{
+        const item: Item= itemState?.find(x => (x as Item)._id == id)!
+        return setItemToBeUpdated!(item);
     }
-const {itemState} = useContext(ItemContext)
-const openModal = useContext(ModalContext)?.openModal
-const setOpenModal = useContext(ModalContext)?.setOpenModal!
-const modalRef: MutableRefObject<null | HTMLDivElement> = useContext(ModalContext)?.modalRef!
-console.log('items', itemState)
-  return (
-    <ItemCard id="modcon" onClick={()=>{
-        setOpenModal(true)
-        console.log(openModal)
-    }}>
-        <ItemImageContainer >
-            <ItemImg src="images/items/Burger1.jpg" alt="image"/>
-        </ItemImageContainer>
-        <ItemDescriptionContainer>
-            <ItemDescriptionSubContainer/>
-            <h4>{name}</h4>
-            <h1>${price}</h1>
-            <p>{description}</p>
-            <div style={{color: "gold"}}>
-                <AiFillStar/>
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
+    return (
+        <ItemCard id="modcon" onClick={() => {
+            getItem(id)
+            itemToBeUpdated?.name && setOpenModal(true)
+            setFormType!({
+                isAddRoleForm: false,
+                isEditRoleForm: false,
+                isAddItemForm: false,
+                isEditItemForm: true
+            })
+        }}>
+            <ItemDescriptionSubContainer id='modcon' />
+            <ItemImageContainer >
+                <ItemImg src={`data:image/png;base64,${base64String}`} alt="image" width={200} height={200} id='modcon' />
+            </ItemImageContainer>
+            <ItemDescriptionContainer id='modcon'>
+                <ItemDescriptionSubContainer />
+                <h4>{name}</h4>
+                <h1>${price}</h1>
+                <p style={{ fontSize: "0.8rem" }}>{description}</p>
+                <div style={{ color: "gold" }}>
+                    <AiFillStar />
+                    <AiFillStar />
+                    <AiFillStar />
+                    <AiFillStar />
+                    <AiFillStar />
                 </div>
-        </ItemDescriptionContainer>
-    </ItemCard>
-  )
+            </ItemDescriptionContainer>
+        </ItemCard>
+    )
 }
 
 export default index

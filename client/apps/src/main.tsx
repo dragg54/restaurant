@@ -5,16 +5,19 @@ import App from './App'
 import './index.css'
 import ModelContextProvider from './contexts/ModalContext'
 import { ItemContextProvider } from './contexts/ItemContext'
-import AuthContextProvider from './contexts/AuthContextProvider'
+import AuthContextProvider from './contexts/AuthContext'
+import { FormItemContext, FormItemContextProvider } from './contexts/FormItemContext'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <AuthContextProvider>
       <ItemContextProvider>
         <ModelContextProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <FormItemContextProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </FormItemContextProvider>
         </ModelContextProvider>
       </ItemContextProvider>
     </AuthContextProvider>

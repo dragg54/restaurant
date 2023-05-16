@@ -1,4 +1,4 @@
-import React, { LegacyRef, MutableRefObject, useContext, useEffect, useRef } from 'react'
+import React, { LegacyRef, MutableRefObject, useContext, useEffect, useRef, useState } from 'react'
 import Navbar from '../navbar/index'
 import SideBar from '../sidebar/index'
 import { DashboardContainer, OutletContainer } from './DashboardContainer'
@@ -22,6 +22,7 @@ const index = () => {
     const openModal: boolean = useContext(ModalContext)!.openModal
     const setOpenModal: null | React.Dispatch<React.SetStateAction<boolean>> = useContext(ModalContext)!.setOpenModal
     const formType = useContext(ModalContext)?.formType
+    const [itemToBeUpdated, setItemToBeUpdated] = useState({})
    /*  */return (
         <DashboardContainer>
             {/* modal */}
@@ -31,6 +32,9 @@ const index = () => {
                         <StaffForm />
                     </div>
                     <div style={{ display: formType?.isAddItemForm ? 'block' : 'none' }}>
+                        <ItemForm />
+                    </div>
+                    <div style={{ display: formType?.isEditItemForm ? 'block' : 'none' }}>
                         <ItemForm />
                     </div>
                 </div>

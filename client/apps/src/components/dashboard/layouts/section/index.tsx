@@ -23,14 +23,14 @@ const index = () => {
         categoryPercentage: 0.66,
         barThickness: 60,
         data: ['5', '3', '7', '6', '9'],
-        backgroundColor: ['#B2D2A4', '#B2D2A4', '#B2D2A4', '#B2D2A4', '#B2D2A4 ']
+        backgroundColor: ['#FFCD58', '#FFCD58', '#FFCD58', '#FFCD58', '#FFCD58 ']
     }, {
         label: 'foods',
         barPercentage: 0.66,
         categoryPercentage: 0.66,
         barThickness: 60,
         data: ['2', '4', '3', '6.2', '8.3'],
-        backgroundColor: ['#32CD30', '#32CD30', '#32CD30', '#32CD30', '#32CD30']
+        backgroundColor: ['#FF5C4D', '#FF5C4D', '#FF5C4D', '#FF5C4D', '#FF5C4D']
     }] 
     /*  options: {
          responsive: true,

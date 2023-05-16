@@ -5,7 +5,7 @@ const index = () => {
   return (
     <TrendyMealsContainer>
         <TrendyFoodsContainer>
-          <h3 style={{color: "#04D010"}}>Trending Foods</h3>
+          <h3 style={{color: "#FF2511"}}>Trending Foods</h3>
           <ul>
             <List>Pichanto Burger</List>
             <List>Cheddar Burger</List>
@@ -15,7 +15,7 @@ const index = () => {
           </ul>
         </TrendyFoodsContainer>
         <TrendyDrinksContainer>
-        <h3 style={{color: "#04D010"}}>Trending Drinks</h3>
+        <h3 style={{color: "#FF2511"}}>Trending Drinks</h3>
           <ul>
             <List>Pichanto Drink</List>
             <List>Cheddar Cola</List>

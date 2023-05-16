@@ -11,21 +11,22 @@ import Settings from './pages/Settings'
 import Staff from './pages/Staff'
 import { Signin } from './pages/Signin'
 import Signup from './pages/Signup'
+import ProtectedRoute from './components/commons/protectedRoutes'
 
 
 const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Dashboard />}>
-          <Route path="/" element={<Section />} />
-          <Route path="orders" element={<Orders />} />
-          <Route path="items" element={<Items />} />
-          <Route path="payments" element={<Payments />} />
-          <Route path="reviews" element={<Reviews />} />
-          <Route path="staff" element={<Staff />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
+          <Route path="/" element={<ProtectedRoute routeProps={<Dashboard />}/>}>
+            <Route path="/" element={<Section />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="items" element={<Items />} />
+            <Route path="payments" element={<Payments />} />
+            <Route path="reviews" element={<Reviews />} />
+            <Route path="staff" element={<Staff />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
         <Route path="signin" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
       </Routes>
