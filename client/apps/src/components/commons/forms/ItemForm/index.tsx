@@ -2,9 +2,10 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { CategoryInput, DescriptionInput, DiscountInput, FileInput, FileInputContainer, FileInputLabel, ItemForm, ItemFormContainer, NameInput, PriceInput, QuantityInput, SaveButton } from './ItemForm'
 import PrimaryButton from '../../button/primaryButton'
 import { postRequest, updateItem } from '../../../../api'
-import { Item } from '../../../../types/Item'
+import { Item, ItemAction } from '../../../../types/Item'
 import { ModalContext } from '../../../../contexts/ModalContext'
 import { FormItemContext } from '../../../../contexts/FormItemContext'
+import { ItemContext } from '../../../../contexts/ItemContext'
 
 const index = () => {
   const {itemToBeUpdated} = useContext(FormItemContext)!
@@ -33,7 +34,7 @@ const index = () => {
           image: itemToBeUpdated? itemToBeUpdated.image: ""
 
         })
-      }, [formType?.isEditItemForm, itemToBeUpdated])
+      }, [itemToBeUpdated])
   
   const handleInput = (e: ChangeEvent<HTMLInputElement |HTMLTextAreaElement> ) =>{
     e.preventDefault()
@@ -45,7 +46,7 @@ const index = () => {
     setItemValue({...itemValue, [e.target.name]: e.target?.files![0]})
   }
   formData.append('image', itemValue.image)
-
+  const {setOpenModal} = useContext(ModalContext)
   const [postItemRequest] = postRequest('http://localhost:8080/api/v1/item/create', itemValue)
   const [updateItemRequest] = updateItem(`http://localhost:8080/api/v1/item/${itemToBeUpdated?._id}`, itemValue)
   return (
@@ -65,7 +66,11 @@ const index = () => {
           <FileInputLabel htmlFor='image'>Upload a file</FileInputLabel>
           <FileInput id='image' type="file" name='image'  onChange={(e)=> handleImageInput(e)}/>
         </FileInputContainer>
-        <SaveButton type='submit'>{formType?.isAddItemForm? "Save": "Update"}</SaveButton>
+        <SaveButton onClick={
+          ()=>{
+            setOpenModal!(false)
+          }
+        } type='submit'>{formType?.isAddItemForm? "Save": "Update"}</SaveButton>
       </ItemForm>
     </ItemFormContainer>
   )

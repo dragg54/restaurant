@@ -16,14 +16,15 @@ type ItemProps = {
 
     },
     name: string,
-    rating: number
+    rating: number,
+    quantity: string
 }
 
 type OpenModal = {
     openModal: boolean
 }
 
-const index = ({id, price, description, discount, image, name, rating }: ItemProps) => {
+const index = ({id, price, description, discount, image, name, rating, quantity }: ItemProps) => {
     const openModal = useContext(ModalContext)?.openModal
     const setOpenModal = useContext(ModalContext)?.setOpenModal!
     const { setFormType } = useContext(ModalContext)
@@ -56,13 +57,14 @@ const index = ({id, price, description, discount, image, name, rating }: ItemPro
                 <h4>{name}</h4>
                 <h1>${price}</h1>
                 <p style={{ fontSize: "0.8rem" }}>{description}</p>
-                <div style={{ color: "gold" }}>
+                <p style={{color: "red", fontSize:"0.8rem", marginTop:"3px"}}>{quantity} items left</p>
+                {/* <div style={{ color: "gold" }}>
                     <AiFillStar />
                     <AiFillStar />
                     <AiFillStar />
                     <AiFillStar />
                     <AiFillStar />
-                </div>
+                </div> */}
             </ItemDescriptionContainer>
         </ItemCard>
     )

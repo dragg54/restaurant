@@ -1,12 +1,12 @@
-import style from 'styled-components'
+import styled from 'styled-components'
 
-export const SearchIcon = style.div`
-  height: 18px;
-  width: 18px;
+export const SearchIcon = styled.div`
+  height: 40px;
+  width: 30px;
   position: absolute;
   top:50%;
-  transform: translate(0%, -50%);
-  right: 13px;
+  transform: translate(10%, -40%);
+  right: 12px;
   color: gray;
   &:hover{
     cursor: pointer

@@ -29,7 +29,6 @@ export const postItem = async (req: UserRequest, res: Response) => {
         })
         item.save()
             .then((response) => {
-                console.log('saved')
                 res.status(200).send(item)
             }).catch((err) => {
                 res.send(err)

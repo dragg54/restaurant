@@ -1,6 +1,6 @@
 import React from 'react'
-import Wrapper  from '../components/dashboard/layouts/wrapper'
-import SignupForm from '../components/commons/forms/signupForm'
+import Wrapper  from '../../components/admin/layouts/wrapper'
+import SignupForm from '../../components/commons/forms/signupForm'
 
 const Signup = () => {
   return (

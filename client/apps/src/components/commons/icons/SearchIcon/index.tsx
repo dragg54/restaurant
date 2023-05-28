@@ -5,7 +5,7 @@ import { SearchIcon } from './SearchIcon'
 const index = () => {
     return (
         <SearchIcon>
-            <FiSearch style={{height: '100%', width:'100%'}}/>
+            <FiSearch style={{height: '30px', width:'30px'}}/>
         </SearchIcon>
     )
 }

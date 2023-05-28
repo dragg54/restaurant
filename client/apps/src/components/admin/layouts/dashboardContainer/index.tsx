@@ -7,6 +7,10 @@ import Section from '../section'
 import { ModalContext } from '../../../../contexts/ModalContext'
 import ItemForm from '../../../commons/forms/ItemForm'
 import StaffForm from '../../../commons/forms/staffForm'
+import { Logo } from '../../../commons/layouts/navbar/Navbar'
+import SearchField from '../../../commons/forms/SearchField'
+import NotificationIcon from '../../../commons/icons/NotificationIcon'
+import CurrentUserContainer from '../../../commons/containers/CurrentUserContainer'
 
 type ModalState = {
     openModal: boolean,
@@ -39,7 +43,15 @@ const index = () => {
                     </div>
                 </div>
             </div>
-            <Navbar />
+            <Navbar>
+                <Logo>
+                    Becca's
+                </Logo>
+                <SearchField />
+                <NotificationIcon />
+                <CurrentUserContainer />
+
+            </Navbar>
             <SideBar />
             <OutletContainer>
                 <Outlet />

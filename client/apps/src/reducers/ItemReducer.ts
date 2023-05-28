@@ -3,6 +3,8 @@ import { ItemAction, Item } from "../types/Item"
 interface IAction {
     type: unknown,
     payload: {
+        _id: number,
+        id: number,
         data: Item,
         item: Item
     }
@@ -26,19 +28,21 @@ export const itemReducer = (state: [Item], action: IAction) => {
                 return [action.payload.data]
             }  
         
-        case ItemAction.DELETE_ITEM:
-            itemIndex = state.findIndex(x => x.id == action.payload.item.id)
-            state.splice(itemIndex, itemIndex + 1)
-            return state
+        // case ItemAction.DELETE_ITEM:
+        //     itemIndex = state.findIndex(x => x?.id == action.payload.id)
+        //     state.splice(itemIndex)
+        //     return state
         
         case ItemAction.UPDATE_ITEM:
-            itemIndex = state.findIndex(x => x.id == action.payload.item.id)
-            state.splice(itemIndex, itemIndex + 1) 
-            state[itemIndex] = action.payload.item
+            itemIndex =  state?.findIndex(x => x?._id == action.payload.id)
+            // var newItemState = [...state, action.payload.item]
+            let item = state?.find((itm)=> itm._id == action.payload.id)
+            state[state.indexOf(item!)] = action.payload.item
+            console.log(state)
+            return [...state];
         
-        case ItemAction.FIND_ITEM:
-           let item = state.find(x => x.id == action.payload.item.id)
-           return [item]
-            
+        default:
+            return state
     }
+   
 }

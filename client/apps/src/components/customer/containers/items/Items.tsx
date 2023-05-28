@@ -1,0 +1,39 @@
+import styled from "styled-components"
+
+export const ItemWrapper = styled.div`
+    --gap: 20px;
+    --column: 4;
+    width: 90%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: --gap;
+`
+
+export const ItemCard = styled.div`
+    width: calc((100%/4) - (var(--gap) * 2));
+    height: 400px;
+    margin: 20px;
+    border: 1px solid #c0c0c0c0;
+    box-shadow: 1px 1px 1px gray;
+    border-radius: 5px;
+`
+
+export const ItemImg = styled.div`
+    height: 60%;
+    width: 100%;
+    object-fit: contain;
+    overflow: hidden;
+    `
+
+export const ItemDesc = styled.div`
+    height: 40%;
+    width: 100%;
+    padding: 15px 10px 20px 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`

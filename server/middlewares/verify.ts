@@ -4,7 +4,6 @@ import { UserRequest } from "../types/request";
 
 export function verify(req: Request, res: Response, next: NextFunction){
   const token = req.cookies.auth
-  console.log(token)
   if (token !== undefined) {
     const secret: string = process.env.SECRET_KEY!
     const decoded = jwt.verify(token, secret)

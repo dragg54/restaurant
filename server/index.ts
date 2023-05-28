@@ -21,9 +21,16 @@ app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors({
   origin: "http://localhost:5173",
-  allowedHeaders: "*",
-  credentials: true
+  allowedHeaders: "Content-Type",
+  credentials: true,
 }))
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin","http://localhost:5173");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  res.header("Content-Type", "application/json")
+  next();
+});
 // parse application/json
 app.use(bodyParser.json())
 // sendFile will go here

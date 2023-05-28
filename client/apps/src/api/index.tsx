@@ -6,6 +6,7 @@ import { User } from '../types/User'
 import { AuthContext } from '../contexts/AuthContext'
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom'
+import { FormItemContext } from '../contexts/FormItemContext'
 
 export const postRequest = (url: string, req: Item) => {
     const { dispatchItemAction, setIsLoading, itemState } = useContext(ItemContext)
@@ -13,13 +14,13 @@ export const postRequest = (url: string, req: Item) => {
         const formData = new FormData()
         formData.append('image', req.image)
         axios.post(url, req, {
+            withCredentials: true,
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
             .then((response) => {
                 if (response) {
-                    console.log(response)
                     dispatchItemAction!({ type: ItemAction.ADD_ITEM, payload: { data: response.data } })
                 }
                 else {
@@ -33,23 +34,23 @@ export const postRequest = (url: string, req: Item) => {
 }
 
 export const updateItem = (url: string, req: Item) => {
-    const { dispatchItemAction } = useContext(ItemContext)
+    const { dispatchItemAction, setIsLoading, isLoading } = useContext(ItemContext)
+    const { itemToBeUpdated, setItemToBeUpdated } = useContext(FormItemContext)!
+    const formData = new FormData()
+    formData.append('image', req.image)
     function updateItemRequest() {
-        const formData = new FormData()
-        formData.append('image', req.image)
         axios.put(url, req, {
             withCredentials: true,
             headers: {
+                'Content-Type': 'multipart/form-data',
                 'Cookie': document.cookie
             }
         })
             .then((response) => {
+                req._id = itemToBeUpdated?._id
                 if (response) {
-                    console.log(response)
-                    dispatchItemAction!({ type: ItemAction.ADD_ITEM, payload: { data: response.data } })
-                }
-                else {
-                    console.log('null response')
+                    dispatchItemAction!({ type: ItemAction.UPDATE_ITEM, payload: { id: itemToBeUpdated?._id, item: req } })
+                    setItemToBeUpdated!({})
                 }
             }).catch((err) => {
                 console.log(err)

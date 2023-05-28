@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
-import DashboardContainer from '@/components/dashboard/layouts/dashboardContainer'
+import DashboardContainer from '@/components/admin/layouts/dashboardContainer'
 import { Outlet } from 'react-router-dom'
-import { ModalContext } from '../contexts/ModalContext'
+import { ModalContext } from '../../contexts/ModalContext'
 
 const Dashboard = () => {
   const openModal = useContext(ModalContext)?.openModal

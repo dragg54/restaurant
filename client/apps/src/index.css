@@ -16,13 +16,12 @@ body{
 }
 
 input{
-    background-color: #EAEFF2;
     border: 1px solid gray;
     border-radius: 4px;
 }
 
 input:hover{
-    border: 2px solid greenyellow
+    border: 2px solid red
 }
 
 input[type="file"]{
@@ -31,15 +30,15 @@ input[type="file"]{
 
 
 input[type = "text"]:hover{
-    border: 2px solid greenyellow
+    border: 2px solid red
 }
 
 input[type = "number"]:hover{
-    border: 2px solid greenyellow
+    border: 2px solid red
 }
 
 textarea:hover{
-    border: 2px solid greenyellow;
+    border: 2px solid red;
 
 }
 

@@ -1,19 +1,19 @@
 import React, { useContext } from 'react'
-import StaffTable from '../components/dashboard/tables/staffTable'
-import { Wrapper } from '../components/dashboard/layouts/wrapper/Wrapper'
-import PrimaryButton from '../components/commons/button/primaryButton'
+import StaffTable from '../../components/admin/tables/staffTable'
+import { Wrapper } from '../../components/admin/layouts/wrapper/Wrapper'
+import PrimaryButton from '../../components/commons/button/primaryButton'
 import { BiPlusMedical } from 'react-icons/bi'
-import SearchField from '../components/commons/forms/SearchField'
+import SearchField from '../../components/commons/forms/SearchField'
 import { FiChevronDown } from 'react-icons/fi'
-import { Input } from '../components/commons/forms/SearchField/SearchField'
-import SearchIcon from '../components/commons/icons/SearchIcon'
-import { ModalContext } from '../contexts/ModalContext'
+import { Input } from '../../components/commons/forms/SearchField/SearchField'
+import SearchIcon from '../../components/commons/icons/SearchIcon'
+import { ModalContext } from '../../contexts/ModalContext'
 
 const Staff = () => {
   const formType = useContext(ModalContext)?.formType
   const setFomType = useContext(ModalContext)?.setFormType!
   return (
-    <Wrapper>
+    <Wrapper user="admin">
       <div style={{ display: 'flex', width: "95%", justifyContent: "space-between", alignItems: "center", marginTop: "30px" }}>
         <h1 style={{ fontWeight: "bold" }}>Staff Roles</h1>
         <div onClick={()=>{

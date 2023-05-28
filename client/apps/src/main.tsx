@@ -9,7 +9,6 @@ import AuthContextProvider from './contexts/AuthContext'
 import { FormItemContext, FormItemContextProvider } from './contexts/FormItemContext'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
     <AuthContextProvider>
       <ItemContextProvider>
         <ModelContextProvider>
@@ -21,5 +20,4 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         </ModelContextProvider>
       </ItemContextProvider>
     </AuthContextProvider>
-  </React.StrictMode>,
 )

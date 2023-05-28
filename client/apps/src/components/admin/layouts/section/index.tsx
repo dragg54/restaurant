@@ -1,7 +1,7 @@
 import React, { LegacyRef, useEffect, useRef } from 'react'
-import RecentOrderCard from '@@/dashboard/cards/RecentOrderCard/index'
-import TrendyMealsCard from '@@/dashboard/cards/TrendyMealsCard/index'
-import SalesCard from '@@/dashboard/cards/SalesCard'
+import RecentOrderCard from '@@/admin/cards/RecentOrderCard/index'
+import TrendyMealsCard from '@@/admin/cards/TrendyMealsCard/index'
+import SalesCard from '@@/admin/cards/SalesCard'
 import { Section } from './Section'
 import MoneyBag from '@@/commons/icons/MoneyBag/index'
 import Expenses from '@@/commons/icons/ExpensesIcon/index'
@@ -18,7 +18,7 @@ Chart.register(CategoryScale, LineController, LineElement, Filler, PointElement,
 const index = () => {
     const dataset = [{
         label: 'beverages',
-        borderWidth : 2,
+        borderWidth : 2, 
         barPercentage: 5,
         categoryPercentage: 0.66,
         barThickness: 60,

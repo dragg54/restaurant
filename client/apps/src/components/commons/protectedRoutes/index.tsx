@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react';
 import { Route, RouteProps } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthContext';
-import { Signin } from '../../../pages/Signin';
+import { Signin } from '../../../pages/admin/Signin';
 
 interface IRoute {
   routeProps: JSX.Element;
