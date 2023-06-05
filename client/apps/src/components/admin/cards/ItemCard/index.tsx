@@ -58,13 +58,6 @@ const index = ({id, price, description, discount, image, name, rating, quantity 
                 <h1>${price}</h1>
                 <p style={{ fontSize: "0.8rem" }}>{description}</p>
                 <p style={{color: "red", fontSize:"0.8rem", marginTop:"3px"}}>{quantity} items left</p>
-                {/* <div style={{ color: "gold" }}>
-                    <AiFillStar />
-                    <AiFillStar />
-                    <AiFillStar />
-                    <AiFillStar />
-                    <AiFillStar />
-                </div> */}
             </ItemDescriptionContainer>
         </ItemCard>
     )

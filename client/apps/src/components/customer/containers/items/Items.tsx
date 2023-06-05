@@ -14,11 +14,11 @@ export const ItemWrapper = styled.div`
 
 export const ItemCard = styled.div`
     width: calc((100%/4) - (var(--gap) * 2));
-    height: 400px;
+    height: 430px;
     margin: 20px;
-    border: 1px solid #c0c0c0c0;
     box-shadow: 1px 1px 1px gray;
     border-radius: 5px;
+    overflow: hidden;
 `
 
 export const ItemImg = styled.div`
@@ -36,4 +36,18 @@ export const ItemDesc = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+`
+
+export const AddToCartButton = styled.button`
+    width: 100%;
+    padding: 15px;
+    background-color: #FF2511;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #FF2511;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    transform: translate(0, 15%);
 `

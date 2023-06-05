@@ -1,11 +1,13 @@
-import React from 'react'
-import { ItemCard, ItemDesc, ItemImg, ItemWrapper } from './Items'
+import React, { useContext } from 'react'
+import { AddToCartButton, ItemCard, ItemDesc, ItemImg, ItemWrapper } from './Items'
 import { Item } from '../../../../types/Item'
 import { AiFillStar } from 'react-icons/ai'
+import { CartContext } from '../../../../contexts/CartContext'
+import { CartAction } from '../../../../types/Cart'
 
 const index = ({item}: {item: Item}) => {
     const base64String = btoa(String.fromCharCode(...new Uint8Array(item?.image?.data.data)))
-    console.log(item.image)
+    const { cartState, dispatchCartAction } = useContext(CartContext)!
   return (
     
         <ItemCard>
@@ -16,13 +18,9 @@ const index = ({item}: {item: Item}) => {
             <h4>{item.name}</h4>
                 <h1>${item.price}</h1>
                 <p style={{ fontSize: "0.8rem" }}>{item.description}</p>
-                <div style={{ color: "gold" }}>
-                    <AiFillStar />
-                    <AiFillStar />
-                    <AiFillStar />
-                    <AiFillStar />
-                    <AiFillStar />
-                </div>
+                <AddToCartButton onClick={()=>{
+                    dispatchCartAction({type: CartAction.ADD_TO_CART, payload:{item}})
+                }}>ADD TO CART</AddToCartButton>
             </ItemDesc>
         </ItemCard>
        

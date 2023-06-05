@@ -1,5 +1,5 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import style from 'styled-components'
 import Section from './components/admin/layouts/section/index'
 import Dashboard from './pages/admin/Dashboard'
@@ -13,9 +13,10 @@ import { Signin } from './pages/admin/Signin'
 import Signup from './pages/common/Signup'
 import ProtectedRoute from './components/commons/protectedRoutes'
 import Home from './pages/customer/Home'
+import Cart from './pages/customer/Cart'
 
 
-const App = () => {
+const App = () => {  
   return (
     <>
       <Routes>
@@ -31,6 +32,7 @@ const App = () => {
         <Route path='home' element={<Home />}></Route>
         <Route path="signin" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
+        <Route path ="cart" element={<Cart />} />
       </Routes>
     </>
   )

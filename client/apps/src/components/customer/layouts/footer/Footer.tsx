@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 
 export const FooterWrapper = styled.div`
-    width: 100wh;
+    width: 100%;
     height: 300px;
     display: flex;
     padding: 50px;
     justify-content: space-evenly;
-    background-color: white;
+    background-color: #FF2511;
+    color: white
 `
 
 export const Box = styled.div`
@@ -25,4 +26,6 @@ export const Heading = styled.h1`
 
 export const List = styled.li`
     line-height: 29px;
+    display: flex;
+    align-items: center;
 `

@@ -28,7 +28,6 @@ export const addCartItem = async (req: ItemRequest, res: Response) => {
                     price: cartItem?.price
                 }]
             })
-            console.log(item)
             const totalCartItemPrice: number = cart.totalPrice + (+(cartItem?.price!) * quantity)
             cart.totalPrice = +totalCartItemPrice.toFixed(2)
             cart.save()
