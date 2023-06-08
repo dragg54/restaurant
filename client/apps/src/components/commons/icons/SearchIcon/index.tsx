@@ -1,11 +1,11 @@
 import React from 'react'
-import { FiSearch } from 'react-icons/fi'
+import { CiSearch } from 'react-icons/ci'
 import { SearchIcon } from './SearchIcon'
 
 const index = () => {
     return (
         <SearchIcon>
-            <FiSearch style={{height: '30px', width:'30px'}}/>
+            <CiSearch style={{height: '30px', width:'30px'}}/>
         </SearchIcon>
     )
 }

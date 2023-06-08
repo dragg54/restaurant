@@ -1,20 +1,38 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Cart, CartContainer, CartTotalContainer, CartWrapper, CounterContainer, Delete, ItemImageContainer, NameAndDescriptionContainer, Price, SumBox } from './Cart'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { CartContext } from '../../../../contexts/CartContext'
 import { ItemImg } from '../../../admin/cards/ItemCard/ItemCard'
 import { CartAction, CartItem } from '../../../../types/Cart'
 import { Item } from '../../../../types/Item'
+import Items from '../../../../pages/admin/Items'
 
 const index = () => {
     const { cartState, dispatchCartAction } = useContext(CartContext)!
+    const itemsObj:{id:number | undefined, quantity: number, name: string | undefined}[] | undefined = cartState?.map((cartItem)=>{
+        return {id: cartItem._id, quantity: 1, name: cartItem.name}
+      })
+    const [items, setItems] = useState<
+    {id:number | undefined, quantity: number, name: string | undefined}[] | undefined | []>(itemsObj)!
 
-    function increaseQuantity(id: number, item: CartItem){
-        if(id == item._id){
-           item.cartItemQuantity + 1 
-        }
+    function increaseQuantity(id: number){
+        const item = items!.find((item)=> item.id == id)
+       setItems([...items!.filter((item)=> item.id != id), {id:id, quantity: item?.quantity! + 1, name: item?.name}])
     }
-    return (
+    function decreaseQuantity(id: number){
+        const item = items!.find((item)=> item.id == id)
+        setItems([...items!.filter((item)=> item.id != id), {id:id, quantity: item?.quantity! - 1, name: item?.name }])
+    }
+
+    function removeItem(id: number){
+       const item = items!.find((cartItem)=> cartItem.id  == id)
+       if(item?.quantity! < 1){
+         dispatchCartAction({type:CartAction.REMOVE_FROM_CART, payload:{item: item!}})
+       }
+    }
+   
+
+       return (
         <CartWrapper>
             <Cart>
                 {
@@ -31,11 +49,17 @@ const index = () => {
                                 <Price>$12</Price>
                                 <CounterContainer>
                                     <SumBox onClick={()=>{
-                                        increaseQuantity(cartItem._id!, cartItem)
+                                        decreaseQuantity(cartItem._id!)
                                     }}>-</SumBox>
-                                    <h3>{cartItem.cartItemQuantity}</h3>
+                                    {items?.map((item)=>{
+                                        if(item.id == cartItem._id){
+                                            return(
+                                                <>{item.quantity > 0? item.quantity : removeItem(item.id!)}</>
+                                            )
+                                        }
+                                    })}
                                     <SumBox onClick={()=>{
-                                        increaseQuantity(cartItem._id!, cartItem)
+                                        increaseQuantity(cartItem._id!)
                                     }}>+</SumBox>
                                 </CounterContainer>
                                 <Delete onClick={()=>{

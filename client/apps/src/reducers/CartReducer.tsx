@@ -15,18 +15,15 @@ export function cartReducer(cartState:[CartItem] | [], action:Action ){
             action.payload.item.cartItemQuantity = 1
             if( cartState && cartState.length > 0){
                 const cartItems = [...cartState, action.payload.item]
-                console.log(cartItems)
                 return [...new Set(cartItems)]
             }
             return [action.payload.item]
         
         case CartAction.REMOVE_FROM_CART:
-            const itemIndex = cartState.findIndex((cartItem)=> cartItem.id == action.payload.item.id)
-            const newCart = cartState.splice(itemIndex, 1)
+            const itemIndex = cartState.findIndex((cartItem)=> cartItem._id == action.payload.item?.id)
+            cartState.splice(itemIndex, 1)
+            console.log(cartState)
             return [...cartState]
-
-
-        // case CartAction.INCREASE_CARTITEM_QTY:
             
             
         default:
