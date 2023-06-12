@@ -28,8 +28,15 @@ export const CartContainer = styled.div`
 `
 export const CartTotalContainer = styled.div`
     width: 35%;
-    height: 200px;
-    background-color: green;
+    height: 300px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px gray;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    align-items: flex-start;
+    justify-content: space-between;
 `
 
 export const ItemImageContainer = styled.div`
@@ -89,4 +96,33 @@ export const SumBox = styled.button`
     color: white;
     border-radius: 3px;
     border: none
+`
+
+export const EmptyCartContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+export const GoShoppingButton = styled.button`
+    width: 300px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #FF2511;
+    background-color: #FF2511;
+    color: white;
+    margin-top: 35px;
+    border: none;
+    font-weight: 800;
+`
+
+export const CheckOutButton = styled.button`
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #FF2511;
+    color: white;
+    font-weight: 800;
+    border: none;
 `

@@ -11,4 +11,5 @@ export const Wrapper = styled.div<{user: string}>`
     flex-direction: column;
     justify-content: flex-start;
     background-color: #F6F4F0;
+    height: 100vh;
 `

@@ -22,7 +22,7 @@ const Cart = () => {
                     <CurrentUserContainer />
                 </Navbar>
                 <CustomerCart />
-                <Footer/>
+                <Footer />
             </Wrapper>
         </ScrollToTop>
     )

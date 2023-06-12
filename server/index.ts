@@ -20,12 +20,12 @@ dbConnect()
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors({
-  origin: "http://localhost:5175",
+  origin: "http://localhost:5174",
   allowedHeaders: "Content-Type",
   credentials: true,
 }))
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin","http://localhost:5175");
+  res.header("Access-Control-Allow-Origin","http://localhost:5174");
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   res.header("Content-Type", "application/json")

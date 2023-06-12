@@ -7,7 +7,7 @@ export const FooterWrapper = styled.div`
     padding: 50px;
     justify-content: space-evenly;
     background-color: #FF2511;
-    color: white
+    color: white;
 `
 
 export const Box = styled.div`
@@ -22,6 +22,7 @@ export const Heading = styled.h1`
     font-weight: 700;
     font-size: 1.3rem;
     margin-bottom: 20px;
+    color: white;
 `
 
 export const List = styled.li`
