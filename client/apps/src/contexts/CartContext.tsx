@@ -3,8 +3,12 @@ import { cartReducer, initialCartState } from "../reducers/CartReducer";
 import { Item } from "../types/Item";
 import { CartItem } from "../types/Cart";
 
+type CartState = {
+    cartItems: [CartItem],
+    cartPrice: number
+}
 export const CartContext = createContext<{
-    cartState: [CartItem] | null
+    cartState: CartState | null
     dispatchCartAction: React.Dispatch<any>
 } | null>(null)
 export const CartContextProvider = ({children}: {children: React.ReactNode}) =>{

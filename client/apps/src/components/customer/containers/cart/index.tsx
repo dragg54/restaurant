@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 
 const index = () => {
     const { cartState, dispatchCartAction } = useContext(CartContext)!
-    const itemsObj:{id:number | undefined, quantity: number, name: string  | undefined, price: number | undefined}[] | undefined = cartState?.map((cartItem)=>{
+    const itemsObj:{id:number | undefined, quantity: number, name: string  | undefined, price: number | undefined}[] | undefined = cartState?.cartItems.map((cartItem)=>{
         return {id: cartItem._id, quantity: 1, name: cartItem.name, price: parseFloat(cartItem.price!)}
       })
     const [items, setItems] = useState<
@@ -45,12 +45,12 @@ const index = () => {
         navigate("/home")
     }
 
-       if(cartState?.length! > 0){
+       if(cartState?.cartItems.length! > 0){
         return(
             <CartWrapper>
             <Cart>
                 {
-                    cartState && cartState.map((cartItem) => {
+                    cartState && cartState.cartItems.map((cartItem) => {
                         const base64String = btoa(String.fromCharCode(...new Uint8Array(cartItem?.image?.data.data)))
                         return (
                             <CartContainer>
@@ -73,7 +73,7 @@ const index = () => {
                                             }
                                     })}
                                     <SumBox onClick={()=>{
-                                        increaseQuantity(cartItem._id!)
+                                        dispatchCartAction({type: CartAction.INCREASE_QUANTITY, payload:{item: cartItem}})
                                     }}>+</SumBox>
                                 </CounterContainer>
                                 <Delete onClick={()=>{
@@ -88,12 +88,12 @@ const index = () => {
                 <h3>CART SUMMARY</h3>
                 <div style={{width: "100%", display:"flex", justifyContent:"space-between", fontSize:"0.9rem"}}>
                     <li>ITEMS QTY</li>
-                    <li>{cartState?.length!}</li>
+                    <li>{cartState?.cartItems.length!}</li>
                 </div>
                 <div style={{width: "100%", background: "#B1B1B1", boxShadow:"1px 1px 1px #B1B1B1", height:"1px"}}></div>
                 <div style={{width: "100%", display:"flex", justifyContent:"space-between", fontWeight:"700"}}>
                     <li>SUB-TOTAL</li>
-                    <li>{calculatePrice().toFixed(2)}</li>
+                    <li>{cartState?.cartPrice}</li>
                 </div>
                 <CheckOutButton>CHECKOUT</CheckOutButton>
             </CartTotalContainer>
