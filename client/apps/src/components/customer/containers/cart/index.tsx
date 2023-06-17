@@ -63,15 +63,9 @@ const index = () => {
                                 <Price>${cartItem.price}</Price>
                                 <CounterContainer>
                                     <SumBox onClick={()=>{
-                                        decreaseQuantity(cartItem._id!)
+                                       cartItem.cartItemQuantity > 1 ? dispatchCartAction({type: CartAction.REDUCE_QUANTITY, payload:{item: cartItem}}): dispatchCartAction({type: CartAction.REMOVE_FROM_CART, payload: {item: cartItem}}) 
                                     }}>-</SumBox>
-                                    {items?.map((item)=>{
-                                        if(item.id == cartItem._id){
-                                            return(
-                                                <>{item.quantity > 0? item.quantity : removeItem(item.id!)}</>
-                                                )
-                                            }
-                                    })}
+                                    {cartItem.cartItemQuantity}
                                     <SumBox onClick={()=>{
                                         dispatchCartAction({type: CartAction.INCREASE_QUANTITY, payload:{item: cartItem}})
                                     }}>+</SumBox>
