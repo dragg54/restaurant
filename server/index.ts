@@ -11,6 +11,7 @@ import { cartRoute } from './routes/api/cartRoutes'
 import { orderRoute } from './routes/api/orderRoutes'
 import { sendMail } from './utils/mailer'
 const { Server } = require('socket.io')
+const router = express.Router()
 
 
 config({ path: __dirname + '/.env' })
@@ -34,9 +35,7 @@ app.use(function(req, res, next) {
 // parse application/json
 app.use(bodyParser.json())
 // sendFile will go here
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '/public/index.html'));
-});
+
 /*  app.post('/create-checkout-session', function(req, res) {
    res.sendFile(path.join(__dirname, '/public/success.html'));
  }); */
@@ -45,8 +44,9 @@ app.use('/', userRoute)
 app.use('/', itemRoute)
 app.use('/', cartRoute)
 app.use('/', orderRoute)
-app.use(express.static('public'));
 app.use('/', (express.static(path.join(__dirname, 'public/images'))))
+app.use('/checkout', (express.static(path.join(__dirname, '/public/index.html'))))
+
 const portNumber = process.env.PORT_NUMBER
 export const server = app.listen(portNumber, () => {
   console.log('listening to port 8080')

@@ -16,30 +16,6 @@ const index = () => {
     const [items, setItems] = useState<
     {id:number | undefined, quantity: number, name: string | undefined, price: number | undefined}[] | undefined | []>(itemsObj)!
 
-    function increaseQuantity(id: number){
-        const item = items!.find((item)=> item.id == id)
-       setItems([...items!.filter((item)=> item.id != id), {id:id, quantity: item?.quantity! + 1, name: item?.name, price: item?.price}])
-    }
-    function decreaseQuantity(id: number){
-        const item = items!.find((item)=> item.id == id)
-        setItems([...items!.filter((item)=> item.id != id), {id:id, quantity: item?.quantity! - 1, name: item?.name, price: item?.price }])
-    }
-
-    function removeItem(id: number){
-       const item = items!.find((cartItem)=> cartItem.id  == id)
-       if(item?.quantity! < 1){
-         dispatchCartAction({type:CartAction.REMOVE_FROM_CART, payload:{item: item!}})
-       }
-    }
-
-    function calculatePrice(): number{
-        let price = 0
-        for(let item of items!){
-            console.log(item)
-            price += item.quantity * item.price!
-        }
-        return price
-    }
     const navigate = useNavigate()
     function goToItemPage(){
         navigate("/home")
@@ -60,7 +36,7 @@ const index = () => {
                                     <h5 style={{fontSize:"1.1rem", color:"black"}}>{cartItem.name}</h5>
                                     <p style={{fontSize:"0.8rem"}}>{cartItem.description}</p>
                                 </NameAndDescriptionContainer>
-                                <Price>${cartItem.price}</Price>
+                                <Price>${(+cartItem.price!).toFixed(2)}</Price>
                                 <CounterContainer>
                                     <SumBox onClick={()=>{
                                        cartItem.cartItemQuantity > 1 ? dispatchCartAction({type: CartAction.REDUCE_QUANTITY, payload:{item: cartItem}}): dispatchCartAction({type: CartAction.REMOVE_FROM_CART, payload: {item: cartItem}}) 
@@ -87,9 +63,9 @@ const index = () => {
                 <div style={{width: "100%", background: "#B1B1B1", boxShadow:"1px 1px 1px #B1B1B1", height:"1px"}}></div>
                 <div style={{width: "100%", display:"flex", justifyContent:"space-between", fontWeight:"700"}}>
                     <li>SUB-TOTAL</li>
-                    <li>{cartState?.cartPrice}</li>
+                    <li>{cartState?.cartPrice.toFixed(2)}</li>
                 </div>
-                <CheckOutButton>CHECKOUT</CheckOutButton>
+                <CheckOutButton onClick={() => navigate("../checkout")}>CHECKOUT</CheckOutButton>
             </CartTotalContainer>
         </CartWrapper>
             )

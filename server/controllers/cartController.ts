@@ -13,11 +13,19 @@ export const addCartItem = async (req: ItemRequest, res: Response) => {
         const cartItem = await Item.findOne({ _id: item })
         if (cart != null) {
             const price = +cartItem?.price!
-            cart.cartItems.push({ item, quantity, price })
-            const totalCartItemPrice: number = cart.totalPrice + (price * quantity)
-            cart.totalPrice = +(totalCartItemPrice.toFixed(2))
-            cart.save()
-            res.status(200).send(cart)
+            const existingItem = cart.cartItems.find((itm) => itm.item == item)
+            if (existingItem) {
+                res.status(409).send("Item already exists")
+            }
+            else {
+                cart.cartItems.push({ item, quantity, price })
+                const totalCartItemPrice: number = cart.totalPrice + (price * quantity)
+                if (totalCartItemPrice) {
+                    cart.totalPrice = +(totalCartItemPrice.toFixed(2))
+                }
+                cart.save()
+                res.status(200).send(cart)
+            }
         }
         else {
             const cart = new Cart({
@@ -50,8 +58,11 @@ export const deleteCartItem = async (req: ItemRequest, res: Response) => {
             const cartItems = cart?.cartItems!
             const item = cartItems.find(p => p.id.toString() == id)
             const itemIndex = cartItems.findIndex(p => p._id?.toString() == id)
-            cartItems.splice(itemIndex, itemIndex + 1)
-            const newCartItemTotalPrice = cart.totalPrice - (item?.price! * item?.quantity!)
+            cartItems.splice(itemIndex, 1)
+            let newCartItemTotalPrice: number = 0;
+            if (item?.price && item?.quantity) {
+                newCartItemTotalPrice = cart.totalPrice - (item?.price! * item?.quantity!)
+            }
             cart.totalPrice = newCartItemTotalPrice
             cart.save()
             res.status(200).json({
@@ -93,7 +104,7 @@ export const updateCartItemQuantity = async (req: ItemRequest, res: Response) =>
                 cart.save()
                 return res.sendStatus(200)
             }
-            else{
+            else {
                 res.status(404).json({
                     error: 'cart item not found'
                 })

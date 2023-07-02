@@ -14,6 +14,10 @@ import Signup from './pages/common/Signup'
 import ProtectedRoute from './components/commons/protectedRoutes'
 import Home from './pages/customer/Home'
 import Cart from './pages/customer/Cart'
+import Checkout from './pages/customer/Checkout'
+import Shipping from './components/customer/containers/shipping'
+import Information from './components/customer/containers/information'
+import CustomerCheckout from './components/customer/containers/checkout'
 
 
 const App = () => {  
@@ -33,6 +37,10 @@ const App = () => {
         <Route path="signin" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
         <Route path ="cart" element={<Cart />} />
+        <Route path='checkout'  element={<Checkout />}>
+          <Route path='information' element={<CustomerCheckout />}/>
+          <Route path='shipping' element={<Shipping />}/>
+          </Route>
       </Routes>
     </>
   )

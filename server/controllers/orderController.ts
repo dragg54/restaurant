@@ -8,7 +8,7 @@ import { User } from "../models/user";
 import { isAdmin } from "../utils/helpers";
 import {sendMail} from '../utils/mailer'
 
-const stripe = require('stripe')('sk_test_51MZnT6HXwt4BpIBQC26Z5Z4ujiT51tzc1QZF95eTENcL6MwfwvmCS6X5V1ERNVGzXaYwK409aG0QyCt6FVGOaqt9002ssFDb8A');
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const DOMAIN_URL = process.env.DOMAIN_URL
 

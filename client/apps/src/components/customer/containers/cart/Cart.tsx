@@ -47,6 +47,7 @@ export const ItemImageContainer = styled.div`
     overflow: hidden;
     display: flex;
     justify-content: center;
+    border-radius: 3px;
     align-items: center;
 `
 

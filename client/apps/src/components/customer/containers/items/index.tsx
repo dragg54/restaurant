@@ -19,7 +19,7 @@ const index = ({item}: {item: Item}) => {
                 <h1>${item.price}</h1>
                 <p style={{ fontSize: "0.8rem" }}>{item.description}</p>
                 <AddToCartButton onClick={()=>{
-                    dispatchCartAction({type: CartAction.ADD_TO_CART, payload:{item}})
+                   ! cartState?.cartItems.find((itm)=> itm._id == item._id) && dispatchCartAction({type: CartAction.ADD_TO_CART, payload:{item}})
                 }}>ADD TO CART</AddToCartButton>
             </ItemDesc>
         </ItemCard>

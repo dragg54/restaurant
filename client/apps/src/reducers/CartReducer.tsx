@@ -24,9 +24,9 @@ export function cartReducer(cartState:CartState , action:Action ){
                     return +item.price! * item.cartItemQuantity
                 })
                 const cartTotalPrice = cartPrice.reduce((prev, next) => prev! + next!)
-                return {cartItems, cartPrice: cartTotalPrice.toFixed(2)}
+                return {cartItems, cartPrice: cartTotalPrice}
             }
-            return {cartItems: [action.payload.item], cartPrice: parseInt(action.payload.item.price!).toFixed(2)}
+            return {cartItems: [action.payload.item], cartPrice: parseFloat(action.payload.item.price!)}
         
         case CartAction.REMOVE_FROM_CART:
             itemIndex =  cartState.cartItems.findIndex((cartItem)=> cartItem._id == action.payload.item?._id)
@@ -39,14 +39,14 @@ export function cartReducer(cartState:CartState , action:Action ){
         case CartAction.INCREASE_QUANTITY:
             itemIndex =  cartState.cartItems.findIndex((cartItem)=> cartItem._id == action.payload.item?._id)
             cartState.cartItems[itemIndex].cartItemQuantity! += 1
-            cartState.cartPrice = +cartState.cartPrice +  +parseInt(cartState.cartItems[itemIndex].price!).toFixed(2)
+            cartState.cartPrice = +cartState.cartPrice +  +(cartState.cartItems[itemIndex].price!)
             return {...cartState}
 
             case CartAction.REDUCE_QUANTITY:
                 itemIndex =  cartState.cartItems.findIndex((cartItem)=> cartItem._id == action.payload.item?._id)
                 if(cartState.cartItems[itemIndex].cartItemQuantity! > 0){
                     cartState.cartItems[itemIndex].cartItemQuantity! -= 1
-                    cartState.cartPrice = +cartState.cartPrice - +parseInt(cartState.cartItems[itemIndex].price!).toFixed(2)
+                    cartState.cartPrice = +cartState.cartPrice - +(cartState.cartItems[itemIndex].price!)
                 }
                 return {...cartState}    
 

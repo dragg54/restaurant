@@ -6,7 +6,6 @@ const Item = () => {
     return (
         <ScrollToTop>
          <Wrapper user='customer'>
-            
             </Wrapper>
         </ScrollToTop>
         
