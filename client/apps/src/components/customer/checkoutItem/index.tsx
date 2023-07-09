@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import { ItemImageContainer } from '../cart/Cart'
+import { ItemImageContainer } from '../containers/cart/Cart'
 import { BoldP, BolderP, ItemContainer, ItmP } from './CheckoutItem'
-import { CartContext } from '../../../../contexts/CartContext'
+import { CartContext } from '../../../contexts/CartContext'
 
 const index = () => {
   const { cartState } = useContext(CartContext)!
@@ -16,7 +16,7 @@ const index = () => {
               <img src={`data:image/png;base64,${base64String}`} alt="image" style={{width: "100%", height:"100%"}} />
               </ItemImageContainer>
               <ItmP style={{fontWeight:"bolder", color:"#000"}}>{itm.name}</ItmP>
-              <ItmP>{itm.quantity}</ItmP>
+              <ItmP>{itm.cartItemQuantity}</ItmP>
               <ItmP>${itm.price}</ItmP>
             </ItemContainer>
           )
@@ -29,7 +29,7 @@ const index = () => {
       <BoldP>Shipping </BoldP><ItmP style={{fontSize:"0.9rem"}}>Calculated at next step</ItmP>
       </ItemContainer>
       <ItemContainer>
-      <BolderP>Total Price </BolderP><BolderP>${cartState?.cartPrice}</BolderP>
+      <BolderP>Total Price </BolderP><BolderP>${cartState?.cartPrice.toFixed(2)}</BolderP>
       </ItemContainer>
     </div>
   )
