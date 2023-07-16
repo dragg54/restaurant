@@ -6,23 +6,28 @@ import { ContactContext } from '../../../../contexts/ContactContext'
 import StripeCheckout, { Token } from 'react-stripe-checkout'
 import { CartContext } from '../../../../contexts/CartContext'
 import axios from 'axios'
+import { ItmP } from '../../checkoutItem/CheckoutItem'
 
 const index = () => {
     const navigate = useNavigate()
     const { userContact } = useContext(ContactContext)!
     const { cartState } = useContext(CartContext)!
 
-    const makePayment = (token: Token) => {
-        const body = {
-            stripeEmail: "ajibolasadiq@yahoo.com",
-            stripeToken: token.id,
-        }
-        axios.post("http://localhost:8080/charge", body, {
-            withCredentials: true,
+    const makePayment = () => {
+        // const body = {
+        //     stripeEmail: "ajibolasadiq@yahoo.com",
+        //     stripeToken: token.id,
+        // }
+        const items = cartState?.cartItems.map((itm)=>{
+            return {name: itm.name, description: itm.description, price: itm.price, quantity: itm.quantity}
+        })
+        axios.post("http://localhost:8080/create-checkout-session", {cartItems: items},
+        {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then((res) => console.log(res)).catch((err) => console.log(err))
+        }).then((res) => window.location.replace(res.data.url)
+        ).catch((err) => console.log(err))
     }
     return (
         <div style={{ width: "100%", height: "100%", position: "relative" }}>
@@ -56,13 +61,12 @@ const index = () => {
                 </DeliveryP>
             </DeliveryContainer>
             <>
-                <div style={{ right: "1px" , position: "absolute", marginTop: "35px"}}>
-                    <StripeCheckout
+                    <ContinueToShopping onClick={()=> makePayment()}>Pay With Card</ContinueToShopping>
+                    {/* <StripeCheckout
                         stripeKey="pk_test_51MZnT6HXwt4BpIBQAyCb0LxDAclJ2qxMU1KlO8Lle2NawVWVDK5LPcma7hUIGGBRMMMYzJDo3v1WHCzi7hOEVh9E00xUfeIGEM"
                         token={makePayment}
                         amount={cartState?.cartPrice! * 100}
-                        name="Cart" />
-                </div>
+                        name="Cart" /> */}
             </>
         </div>
     )

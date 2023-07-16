@@ -2,19 +2,23 @@ import mongoose, { model, Schema } from "mongoose";
 import { OrderStatus } from "../types/orderStatus";
 import { CartItemSchema, CartSchema } from "./cart";
 import { User } from "./user";
+import { CustomerContact, CustomerContactSchema } from "./customerContact";
 
 const OrderSchema = new Schema({
-    cartItems: [CartItemSchema],
-    totalPrice:{
+    name: {
+        type: String
+    },
+    cartItems: [Object],
+    totalAmount:{
         type: Number
     },
     status:{
         type: String,
         enum: OrderStatus!,
-        default: OrderStatus.UNORDERED
+        default: OrderStatus[OrderStatus.PENDING]
     },
-    address: {
-        type: String
+    contact:{
+        type: CustomerContactSchema
     },
     orderedBy: {
         type: mongoose.Types.ObjectId,

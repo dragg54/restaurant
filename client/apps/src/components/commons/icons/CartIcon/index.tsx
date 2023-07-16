@@ -12,7 +12,7 @@ const index = () => {
     navigate("/cart")
    }}>
     <FiShoppingCart style={{width: "70%", height:"70%"}}/>
-    {cartState && cartState.cartItems.length > 0 &&<CartContent>{cartState.cartItems.length}</CartContent>}
+    {cartState && cartState.cartItems?.length > 0 &&<CartContent>{cartState.cartItems?.length}</CartContent>}
    </CartIconContainer>
   )
 }

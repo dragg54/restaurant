@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ItemContext } from '../contexts/ItemContext'
 import { Item, ItemAction } from '../types/Item'
 import { User } from '../types/User'
@@ -7,6 +7,8 @@ import { AuthContext } from '../contexts/AuthContext'
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom'
 import { FormItemContext } from '../contexts/FormItemContext'
+import { NotificationContext } from '../contexts/NotificationContext'
+import { Order } from '../types/Order'
 
 export const postRequest = (url: string, req: Item) => {
     const { dispatchItemAction, setIsLoading, itemState } = useContext(ItemContext)
@@ -93,10 +95,58 @@ export const postSignInRequest = (url: string, req: User) => {
                 localStorage.setItem("token", JSON.stringify(response.data))
                 setIsLoading!(false)
                 setIsLoggedIn!(true)
-                navigate("/")
+                navigate("/dashboard")
             }).catch((err) => {
                 console.log(err)
             })
     }
     return [postSignIn]
+}
+
+export const postNotification = () =>{
+    axios.post("http://localhost:8080/api/v1/notification", {
+        msg: "A new order has been received"
+    }).then((res)=>{
+        console.log(res)
+    }).catch((err)=>{
+        console.log(err)
+    })
+}
+
+export const useFetchNotification = () =>{
+    const {notification, dispatchNotificationAction, isLoading} = useContext(NotificationContext)!
+    useEffect(()=>{
+        axios.get("http://localhost:8080/api/v1/notification")
+    .then((res)=>{
+       if(res.data.length > 0){
+        dispatchNotificationAction({ type: "ADD_NOTIFICATION", payload: { msg: "You have received New Order" } })
+       }
+    }).catch((err)=>{
+        console.log(err)
+    })
+    }, [isLoading])
+}
+
+export const useFetchOrder = (refresh: boolean):[[Order], boolean] =>{
+    const [order, setOrder] = useState<[Order]>()
+    const [loading, setLoading] = useState(true)
+    useEffect(()=>{
+        axios.get("http://localhost:8080/api/v1/orders")
+    .then((res)=>{
+        setOrder(res.data)
+        setLoading(false)
+   }).catch((err)=>{
+        console.log(err)
+    })
+    }, [loading, refresh])
+    return [order!, loading]
+}
+
+export const deleteNotifications = () =>{
+    axios.delete("http://localhost:8080/api/v1/notifications")
+    .then((res)=>{
+        console.log(res)
+    }).catch((err)=>{
+        console.log(err)
+    })
 }

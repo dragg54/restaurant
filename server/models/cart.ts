@@ -22,7 +22,7 @@ export const CartSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    cartItems: [CartItemSchema],
+    cartItems: [],
     totalPrice:{
         type: Number,
         default: 0.00

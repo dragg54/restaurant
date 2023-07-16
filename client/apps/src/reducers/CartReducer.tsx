@@ -13,7 +13,7 @@ type CartState = {
 }
 export let initialCartState: never
 
-export function cartReducer(cartState:CartState , action:Action ){
+export function cartReducer(cartState:CartState = initialCartState , action:Action ){
     let itemIndex:number
     switch(action.type){
         case CartAction.ADD_TO_CART:
@@ -24,9 +24,21 @@ export function cartReducer(cartState:CartState , action:Action ){
                     return +item.price! * item.cartItemQuantity
                 })
                 const cartTotalPrice = cartPrice.reduce((prev, next) => prev! + next!)
+                localStorage.setItem("items", JSON.stringify( {cartItems, cartPrice: cartTotalPrice}))
                 return {cartItems, cartPrice: cartTotalPrice}
             }
+            localStorage.setItem("items", JSON.stringify( {cartItems: [action.payload.item], cartPrice: parseFloat(action.payload.item.price!)}))
             return {cartItems: [action.payload.item], cartPrice: parseFloat(action.payload.item.price!)}
+
+        case CartAction.GET_CART_ITEMS:
+            const localStorageItems = JSON.parse(localStorage.getItem("items")!)
+            console.log(localStorageItems)
+            if(localStorageItems != null ){
+                return {cartItems: [...localStorageItems.cartItems], cartPrice: localStorageItems.cartPrice}
+            }
+            else{
+                return {cartItems:[], cartPrice: 0}
+            }
         
         case CartAction.REMOVE_FROM_CART:
             itemIndex =  cartState.cartItems.findIndex((cartItem)=> cartItem._id == action.payload.item?._id)
@@ -34,12 +46,14 @@ export function cartReducer(cartState:CartState , action:Action ){
             const itemQty = cartState.cartItems[itemIndex]?.cartItemQuantity
             cartState.cartPrice = +cartState.cartPrice - (itemPrice! * itemQty!)
             cartState.cartItems.splice(itemIndex, 1)
+            localStorage.setItem("items", JSON.stringify( {cartItems: cartState.cartItems, cartPrice: cartState.cartPrice}))
             return {...cartState}
 
         case CartAction.INCREASE_QUANTITY:
             itemIndex =  cartState.cartItems.findIndex((cartItem)=> cartItem._id == action.payload.item?._id)
             cartState.cartItems[itemIndex].cartItemQuantity! += 1
             cartState.cartPrice = +cartState.cartPrice +  +(cartState.cartItems[itemIndex].price!)
+            localStorage.setItem("items", JSON.stringify( {cartItems: cartState.cartItems, cartPrice: cartState.cartPrice}))
             return {...cartState}
 
             case CartAction.REDUCE_QUANTITY:
@@ -48,6 +62,7 @@ export function cartReducer(cartState:CartState , action:Action ){
                     cartState.cartItems[itemIndex].cartItemQuantity! -= 1
                     cartState.cartPrice = +cartState.cartPrice - +(cartState.cartItems[itemIndex].price!)
                 }
+                localStorage.setItem("items", JSON.stringify( {cartItems: cartState.cartItems, cartPrice: cartState.cartPrice}))
                 return {...cartState}    
 
         default:

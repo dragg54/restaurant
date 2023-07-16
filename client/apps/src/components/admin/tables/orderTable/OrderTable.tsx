@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const OrderTable = styled.div`
     display: grid;
     background: yellow;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(9, 1fr);
     width: 1100px;
     margin-top: 40px;
     border: 1px solid gray;
@@ -13,7 +13,6 @@ export const OrderTable = styled.div`
 `
 export const OrderHeaderContainer = styled.div`
     width: 100%;
-    height: 70px;
     border: 1px solid gray;
     background: #FF2511;
     display: flex;
@@ -30,6 +29,7 @@ export const OrderDetailContainer = styled(OrderTable)`
     margin-top: -4px
 `
 export const OrderDetail = styled(OrderHeaderContainer)`
+    padding: 10px;
     background: #fff;
     color: gray;
     font-size: 1rem

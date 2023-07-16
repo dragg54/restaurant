@@ -14,7 +14,7 @@ const index = () => {
   return (
     <SideBar>
       <SideBarMenuContainer>
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/dashboard" style={{ textDecoration: "none" }}>
           <MenuContainer>
             <HomeIcon />
             <MenuList>Dashboard</MenuList>

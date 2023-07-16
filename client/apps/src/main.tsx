@@ -10,6 +10,7 @@ import { FormItemContext, FormItemContextProvider } from './contexts/FormItemCon
 import { CartContextProvider } from './contexts/CartContext'
 import ScrollToTop from './components/ScrollToTop'
 import { ContactContextProvider } from './contexts/ContactContext'
+import NotificationContextProvider from './contexts/NotificationContext'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <CartContextProvider>
@@ -18,11 +19,13 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <ModelContextProvider>
           <FormItemContextProvider>
             <ContactContextProvider>
-            <BrowserRouter>
-            <ScrollToTop>
-              <App />
-            </ScrollToTop>
-            </BrowserRouter>
+              <NotificationContextProvider>
+                <BrowserRouter>
+                  <ScrollToTop>
+                    <App />
+                  </ScrollToTop>
+                </BrowserRouter>
+              </NotificationContextProvider>
             </ContactContextProvider>
           </FormItemContextProvider>
         </ModelContextProvider>
